@@ -1,0 +1,66 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 2 items
+
+tests/test_domain.py::test_required_question_cannot_have_zero_capacity[MULTI-constraints0] FAILED [ 50%]
+tests/test_domain.py::test_required_question_cannot_have_zero_capacity[TEXT-constraints1] FAILED [100%]
+
+================================== FAILURES ===================================
+____ test_required_question_cannot_have_zero_capacity[MULTI-constraints0] _____
+
+typ = 'MULTI', constraints = {'maxSelections': 0}
+
+    @pytest.mark.parametrize('typ,constraints',[('MULTI',{'maxSelections':0}),('TEXT',{'maxLength':0})])
+    def test_required_question_cannot_have_zero_capacity(typ,constraints):
+>       with pytest.raises(AppError):validate_definition(definition([question(typ=typ,required=True,constraints=constraints)]).model_dump(),True)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:123: Failed
+_____ test_required_question_cannot_have_zero_capacity[TEXT-constraints1] _____
+
+typ = 'TEXT', constraints = {'maxLength': 0}
+
+    @pytest.mark.parametrize('typ,constraints',[('MULTI',{'maxSelections':0}),('TEXT',{'maxLength':0})])
+    def test_required_question_cannot_have_zero_capacity(typ,constraints):
+>       with pytest.raises(AppError):validate_definition(definition([question(typ=typ,required=True,constraints=constraints)]).model_dump(),True)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:123: Failed
+============================== warnings summary ===============================
+..\..\work\venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system\docs\test-results\run-04\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102     81    21%   19-25, 29-35, 38-62, 65-68, 71-72, 75-93, 96-120
+app\auth_service.py         34     20    41%   16-23, 26-32, 35-40, 43
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              164    123    25%   10-20, 25, 28, 32, 38, 42, 45, 47, 53, 56, 58, 60-67, 70-97, 102-141, 145-155, 160-163, 168-180, 187, 192-193
+app\errors.py                6      3    50%   3-4, 8
+app\main.py                142     56    61%   31, 35-37, 43-49, 56, 60-61, 65-66, 70-84, 88-89, 96-99, 103, 107-109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 169, 173
+app\models.py               68      8    88%   62-69
+app\repositories.py         67     39    42%   11, 15-16, 20-23, 27-30, 34-39, 46-47, 50-51, 54-55, 64-66, 69-71, 74-76, 81, 87-92
+app\schema.py               35     16    54%   58-73, 77-78
+app\security.py             17      2    88%   15-16
+app\stats_service.py        49     36    27%   14-31, 34-38, 44-45, 48-52, 55-68
+app\survey_service.py       82     60    27%   11-12, 16-17, 21-24, 32-34, 37-50, 55-56, 59-67, 70-79, 82-89, 92-98, 101-108
+------------------------------------------------------
+TOTAL                      790    455    42%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system\docs\test-results\run-04\coverage.json
+=========================== short test summary info ===========================
+FAILED tests/test_domain.py::test_required_question_cannot_have_zero_capacity[MULTI-constraints0]
+FAILED tests/test_domain.py::test_required_question_cannot_have_zero_capacity[TEXT-constraints1]
+======================== 2 failed, 1 warning in 0.68s =========================

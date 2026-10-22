@@ -1,0 +1,12 @@
+{
+  "passed": 6,
+  "checks": [
+    "real TCP health endpoint",
+    "HTML served with UTF-8",
+    "all frontend static assets served",
+    "HTTP cookie login and CSRF",
+    "create publish fill submit statistics over TCP",
+    "OpenAPI export"
+  ],
+  "error": "前端DOM验证失败，见frontend-output.txt"
+}

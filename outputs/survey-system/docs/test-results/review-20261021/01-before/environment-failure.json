@@ -1,0 +1,7 @@
+{
+  "kind": "environment-startup-failure",
+  "businessAssertionsExecuted": 0,
+  "observedFromActualToolOutput": "RuntimeError: 临时MongoDB连接超时",
+  "relatedDOMStartup": "MongoDB连接超时; cleanup ServerSelectionTimeoutError included WinError 10013",
+  "handling": "Requested escalation; reran separately and preserved results. No network/security settings changed."
+}

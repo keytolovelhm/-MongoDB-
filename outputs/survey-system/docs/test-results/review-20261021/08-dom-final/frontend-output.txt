@@ -1,0 +1,21 @@
+PASS 页面及正式JS模块可加载
+PASS 注册登录并进入工作台
+PASS 创建并展示五题演示问卷
+PASS 通过规则配置控件保存数字跳转
+PASS 发布并生成填写入口
+PASS 以登录后匿名方式创建填写会话
+PASS 单选规则跳过必答题进入多选
+PASS 多选必答错误提示
+PASS 多选保存并进入数字题
+PASS 数字整数限制错误提示
+PASS 数字规则执行到目标题
+PASS 文本保存与提交前核对
+PASS 修改上游后清理两个失效分支答案
+PASS 页面内明确列出被清除答案的题号、题干及重新填写提示
+PASS 短暂通知消失后页面内清理提示仍可查看
+PASS 正式提交并显示回执
+PASS 工作台统计答卷数与独立账号数
+PASS 分页显示原始文本，按文本节点展示HTML内容
+
+(node:43944) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,0 +1,108 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 5 items
+
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[SINGLE-value0] FAILED [ 20%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[TEXT-value1] FAILED [ 40%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[NUMBER-value2] FAILED [ 60%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[MULTI-] FAILED [ 80%]
+tests/test_api.py::test_closed_definition_supports_readonly_saved_answers FAILED [100%]
+
+================================== FAILURES ===================================
+_________ test_optional_wrong_empty_type_is_not_a_skip[SINGLE-value0] _________
+
+typ = 'SINGLE', value = []
+
+    @pytest.mark.parametrize('typ,value',[('SINGLE',[]),('TEXT',[]),('NUMBER',[]),('MULTI','')])
+    def test_optional_wrong_empty_type_is_not_a_skip(typ,value):
+>       with pytest.raises(AppError):normalize_answer(question(typ=typ,required=False),value)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:118: Failed
+__________ test_optional_wrong_empty_type_is_not_a_skip[TEXT-value1] __________
+
+typ = 'TEXT', value = []
+
+    @pytest.mark.parametrize('typ,value',[('SINGLE',[]),('TEXT',[]),('NUMBER',[]),('MULTI','')])
+    def test_optional_wrong_empty_type_is_not_a_skip(typ,value):
+>       with pytest.raises(AppError):normalize_answer(question(typ=typ,required=False),value)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:118: Failed
+_________ test_optional_wrong_empty_type_is_not_a_skip[NUMBER-value2] _________
+
+typ = 'NUMBER', value = []
+
+    @pytest.mark.parametrize('typ,value',[('SINGLE',[]),('TEXT',[]),('NUMBER',[]),('MULTI','')])
+    def test_optional_wrong_empty_type_is_not_a_skip(typ,value):
+>       with pytest.raises(AppError):normalize_answer(question(typ=typ,required=False),value)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:118: Failed
+____________ test_optional_wrong_empty_type_is_not_a_skip[MULTI-] _____________
+
+typ = 'MULTI', value = ''
+
+    @pytest.mark.parametrize('typ,value',[('SINGLE',[]),('TEXT',[]),('NUMBER',[]),('MULTI','')])
+    def test_optional_wrong_empty_type_is_not_a_skip(typ,value):
+>       with pytest.raises(AppError):normalize_answer(question(typ=typ,required=False),value)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:118: Failed
+___________ test_closed_definition_supports_readonly_saved_answers ____________
+
+env = namespace(app=<fastapi.applications.FastAPI object at 0x0000021E6B7A8190>, client=<starlette.testclient.TestClient obj...79d4', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+actor = <function actor.<locals>.<lambda> at 0x0000021E6B7FEAC0>
+
+    def test_closed_definition_supports_readonly_saved_answers(env,actor):
+        owner=actor();s=published(owner,[question(typ='TEXT')]);a=answer(owner,attempt(owner,s),'q1','仍可查看')
+        owner.call('POST',f"/surveys/{s['id']}/close",{'revision':s['revision']})
+        public=owner.call('GET','/public/'+s['shareSlug'])
+>       assert public['effectiveStatus']=='CLOSED' and public['questions'][0]['questionId']=='q1'
+                                                       ^^^^^^^^^^^^^^^^^^^^^^
+E       IndexError: list index out of range
+
+tests\test_api.py:280: IndexError
+============================== warnings summary ===============================
+..\..\work\venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system\docs\test-results\run-02\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102     34    67%   44-45, 48, 50, 59-61, 65-68, 71-72, 96-120
+app\auth_service.py         34      5    85%   18, 22, 28, 37, 43
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              163     91    44%   10-20, 25, 28, 32, 38, 42, 44-45, 47, 53, 56, 58, 60-67, 70-97, 105, 109-110, 112-120, 123, 126, 128, 130-138, 143-153, 159, 171
+app\errors.py                6      3    50%   3-4, 8
+app\main.py                142     24    83%   56, 60-61, 65-66, 73, 75, 83, 88-89, 103, 107-109, 113, 121, 125, 137, 145, 153, 161, 165, 169, 173
+app\models.py               68      5    93%   63-66, 68
+app\repositories.py         71      8    89%   16, 74-76, 81-83, 86
+app\schema.py               35      2    94%   62, 78
+app\security.py             17      1    94%   16
+app\stats_service.py        49     36    27%   14-31, 34-38, 44-45, 48-52, 55-68
+app\survey_service.py       83     21    75%   17, 22, 24, 49-50, 55-56, 59-67, 92-98
+------------------------------------------------------
+TOTAL                      794    241    70%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\outputs\survey-system\docs\test-results\run-02\coverage.json
+=========================== short test summary info ===========================
+FAILED tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[SINGLE-value0]
+FAILED tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[TEXT-value1]
+FAILED tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[NUMBER-value2]
+FAILED tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[MULTI-]
+FAILED tests/test_api.py::test_closed_definition_supports_readonly_saved_answers
+======================== 5 failed, 1 warning in 1.65s =========================

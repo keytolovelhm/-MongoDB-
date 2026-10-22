@@ -1,0 +1,7 @@
+{
+  "command": "node --check outputs/survey-system/tests/frontend/smoke.mjs",
+  "actualExitCode": 0,
+  "stdout": "",
+  "stderr": "",
+  "source": "Actual tool execution after fixing the extra parenthesis; before final DOM run"
+}

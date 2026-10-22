@@ -1,0 +1,12 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra"
+markers = ["integration: uses a real isolated MongoDB database"]
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/static/*"]
+
+[tool.coverage.report]
+show_missing = true

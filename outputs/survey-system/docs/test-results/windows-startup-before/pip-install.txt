@@ -1,0 +1,12 @@
+Collecting annotated-doc==0.0.5 (from -r outputs/survey-system/requirements.txt (line 1))
+ERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: 'C:\\Users\\LOCAL_USER\\AppData\\Local\\Packages\\sandbox.LOCAL\\AC\\Temp\\pip-unpack-up3tbch4\\annotated_doc-0.0.5-py3-none-any.whl.metadata'
+Check the permissions.
+
+WARNING: Failed to remove contents in a temporary directory 'C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pip-build-tracker-aki8gxob'.
+You can safely remove it manually.
+WARNING: Failed to remove contents in a temporary directory 'C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pip-unpack-up3tbch4'.
+You can safely remove it manually.
+WARNING: Failed to remove contents in a temporary directory 'C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pip-ephem-wheel-cache-dyncskt5'.
+You can safely remove it manually.
+WARNING: Failed to remove contents in a temporary directory 'C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pip-install-tbzm2z3o'.
+You can safely remove it manually.

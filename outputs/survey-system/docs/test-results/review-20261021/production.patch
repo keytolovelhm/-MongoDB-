@@ -1,0 +1,37 @@
+diff --git a/outputs/survey-system/app/domain.py b/outputs/survey-system/app/domain.py
+index 2ebe37b..b39d5cb 100644
+--- a/outputs/survey-system/app/domain.py
++++ b/outputs/survey-system/app/domain.py
+@@ -94,7 +94,11 @@ def validate_definition(survey, publishing=False):
+                 valid = False
+             if not valid:
+                 fail('condition_invalid', '跳转条件与题型或参数不匹配', field=field)
+-            signature = (op, tuple(sorted(value)) if isinstance(value, list) and q['type'] == 'MULTI' else tuple(value) if isinstance(value, list) else value)
++            if q['type'] == 'NUMBER':
++                # Decimal equality/hash preserves exact numeric meaning without context rounding.
++                signature = (op, tuple(number(v, field) for v in value) if isinstance(value, list) else number(value, field))
++            else:
++                signature = (op, tuple(sorted(value)) if isinstance(value, list) else value)
+             if signature in seen_conditions:
+                 fail('duplicate_condition', '重复条件会使后续规则永不生效', field=field)
+             seen_conditions.add(signature)
+diff --git a/outputs/survey-system/app/static/filler.js b/outputs/survey-system/app/static/filler.js
+index 5ffa60f..fb3c2e9 100644
+--- a/outputs/survey-system/app/static/filler.js
++++ b/outputs/survey-system/app/static/filler.js
+@@ -38,7 +38,14 @@ export async function filler(slug) {
+     }
+     const nav=el('div',{class:'question-nav'});
+     survey.questions.forEach((q,i)=>{if(attempt.visitedQuestionIds.includes(q.questionId))nav.append(button(`${i+1}`,()=>{current=q.questionId;render();},current===q.questionId?'active':''));});
+-    root.append(el('p',{class:'saved'},`已保存 ${attempt.answers.length} 题 · 回看修改可能清除不再可达的分支答案`),nav);
++    root.append(el('p',{class:'saved'},`已保存 ${attempt.answers.length} 题 · 回看修改会重算路径，可能保守清理后续旧答案`),nav);
++    if(attempt.removedQuestionIds?.length){
++      const removed=new Set(attempt.removedQuestionIds);
++      const labels=survey.questions.map((q,i)=>removed.has(q.questionId)?`第${i+1}题「${q.title}」`:null).filter(Boolean);
++      root.append(el('section',{class:'panel',role:'status','aria-live':'polite','aria-label':'已清除答案提示'},
++        el('h2',{},`已清除${removed.size}题已保存答案`),el('p',{class:'long-text'},labels.join('；')),
++        el('p',{class:'muted'},'路径已重新计算；新出现的待答题之后的旧答案也会保守清除。请沿当前路径重新填写，已清除的内容不会自动恢复。')));
++    }
+     if(!current){
+       root.append(el('section',{class:'panel'},el('h2',{},'填写完成，请核对后提交'),summary(values),el('div',{class:'actions'},
+         button('提交问卷',async()=>{attempt=await api('/attempts/'+attempt.id+'/submit','POST',{revision:attempt.revision});render();},'primary'),

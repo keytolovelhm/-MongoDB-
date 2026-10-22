@@ -1,0 +1,113 @@
+{
+  "date": "2026-10-22",
+  "executedBy": "AI",
+  "sourceBaseline": "phase1-submit-20261022-r1 (local original repository only)",
+  "publicationMethod": "Sanitized source snapshot based on existing remote initial commit",
+  "initialCommitPreserved": "38fee811613b8cebe7d84d8325e4b2e991e514c5",
+  "originalHistoryAndTagsIncluded": false,
+  "protectedFilesByteIdentical": 49,
+  "filesChecked": 119,
+  "pythonSyntaxFiles": 31,
+  "javascriptSyntaxFiles": 6,
+  "relativeLinksChecked": 105,
+  "fragmentsChecked": 26,
+  "brokenLinks": 0,
+  "schemaMatches": true,
+  "pipCheck": "No broken requirements found.",
+  "historicalFixtureCheck": {
+    "baseline": "phase1-history-v1",
+    "fileHashes": "verified",
+    "collections": {
+      "users": 1,
+      "surveys": 1,
+      "responses": 4,
+      "sessions": 0
+    }
+  },
+  "backend": {
+    "tests": 126,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pytestDurationSeconds": 6.1,
+  "coverage": {
+    "covered_lines": 765,
+    "num_statements": 794,
+    "percent_covered": 96.34760705289672
+  },
+  "http": {
+    "passed": 6,
+    "failed": 0
+  },
+  "dom": {
+    "passed": 18,
+    "failed": 0,
+    "humanVisualAcceptance": false
+  },
+  "evidenceIsRedactedCopy": true,
+  "images": [
+    {
+      "file": "E01-first-submit-stats-redacted.png",
+      "sha256": "9490c4a8f0da39925fc8640b379ebe5b5da66ef99a4dbd143df18a07bb82db90",
+      "accountMaskBox": [
+        1250,
+        20,
+        1405,
+        80
+      ],
+      "allOtherPixelsUnchanged": true,
+      "metadataEmpty": true
+    },
+    {
+      "file": "E02-create-form-public.png",
+      "sha256": "48b5464b276bda4dc6c0464e23c3ff901edc72233f35d88925cb2fa0d284cdab",
+      "accountMaskBox": null,
+      "allOtherPixelsUnchanged": true,
+      "metadataEmpty": true
+    }
+  ],
+  "textRedactions": [
+    "Local username and home path -> LOCAL_USER",
+    "Hostname -> LOCAL_TEST_HOST",
+    "Sandbox directory identifier -> sandbox.LOCAL"
+  ],
+  "privacyAudit": {
+    "knownIdentifierFindings": 0,
+    "secretPatternFindings": 0,
+    "originalSensitiveCommitsPresent": false,
+    "unknownHistoricalImages": 0,
+    "allReachableObjectsChecked": true
+  },
+  "initialSandboxAttempt": {
+    "testsExecuted": false,
+    "httpChecksPassed": 0,
+    "cause": "Loopback access denied (WinError 10013); MongoDB connection timeout",
+    "retest": "New isolated databases outside sandbox; both runners exited 0"
+  },
+  "publication": {
+    "status": "READY_AFTER_LOCAL_CHECKS",
+    "pushed": false,
+    "publicTag": "phase1-public-v1.0.0",
+    "remoteCloneVerified": false
+  },
+  "localOriginals": "Original ZIP, four original tags, local history backups and evidence retained unchanged",
+  "removed": [
+    "Stage-one packager",
+    "Unreferenced old consistency summary",
+    "Successful pip installation progress log"
+  ],
+  "excluded": [
+    "ZIP",
+    "Git bundle",
+    "source-manifest.json",
+    "Private .env",
+    "Keys",
+    "Database files",
+    "Virtualenv",
+    "node_modules",
+    "Caches",
+    "Phase-two design"
+  ],
+  "humanAcceptance": "Existing M01-M03 only; no new manual test or personal code edit claimed"
+}

@@ -1,0 +1,29 @@
+{
+  "baseline": "phase1-history-v1",
+  "format": "MongoDB Canonical Extended JSON",
+  "synthetic": true,
+  "versions": {
+    "schemaVersion": 1,
+    "contentVersion": 1,
+    "ruleLanguageVersion": 1,
+    "identityKeyVersion": 1
+  },
+  "collections": {
+    "users": {
+      "count": 1,
+      "sha256": "82c043ae990f6008bb4e338a2dae8be464d240ee0503dd5fec1f0e01a33c536d"
+    },
+    "surveys": {
+      "count": 1,
+      "sha256": "b3dedda220627fe310d4aa263e9e1d290d9e103d3940a5ae31fa9669b01afa94"
+    },
+    "responses": {
+      "count": 4,
+      "sha256": "a588fd2b0729bc4222f91eceba2afee420f0ce935aa9b7835a4146236f3d0dbf"
+    },
+    "sessions": {
+      "count": 0,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  }
+}

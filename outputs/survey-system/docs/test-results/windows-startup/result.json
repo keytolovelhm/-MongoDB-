@@ -1,0 +1,14 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "checks": [
+    "fresh .env creation, independent MongoDB, actual TCP HTML/assets/register/login/create from Unicode+space path",
+    "restart preserves .env, secret, account and saved survey",
+    "occupied database port is rejected and existing MongoDB remains alive",
+    "README init_db and history restore/verify CLI commands succeed against separate database"
+  ],
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "mongoVersion": "6.0.27",
+  "method": "Fresh venv; actual launcher, real MongoDB/TCP; controlled Uvicorn exit wrapper",
+  "limitations": "Existing installed Python/MongoDB, not fresh Windows VM. No human browser/Ctrl+C test."
+}

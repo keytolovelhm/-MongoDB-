@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.venv/
+.runtime/
+__pycache__/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.pyc
+node_modules/
+docs/test-results/my-*/
+source-manifest.json
+history/*.bundle

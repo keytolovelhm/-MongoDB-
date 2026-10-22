@@ -1,0 +1,2 @@
+# Preserve exact source/fixture/evidence bytes used by SHA256 manifests on Windows.
+* -text

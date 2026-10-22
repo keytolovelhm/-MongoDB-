@@ -1,0 +1,484 @@
+{
+  "users": {
+    "bsonType": "object",
+    "required": [
+      "username",
+      "usernameNormalized",
+      "passwordHash",
+      "createdAt",
+      "schemaVersion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "username": {
+        "bsonType": "string"
+      },
+      "usernameNormalized": {
+        "bsonType": "string"
+      },
+      "passwordHash": {
+        "bsonType": "string"
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      }
+    }
+  },
+  "surveys": {
+    "bsonType": "object",
+    "required": [
+      "ownerId",
+      "shareSlug",
+      "title",
+      "description",
+      "anonymousEnabled",
+      "allowMultipleSubmissions",
+      "status",
+      "closesAt",
+      "questions",
+      "contentVersion",
+      "ruleLanguageVersion",
+      "revision",
+      "createdAt",
+      "updatedAt",
+      "publishedAt",
+      "closedAt",
+      "schemaVersion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "ownerId": {
+        "bsonType": "objectId"
+      },
+      "shareSlug": {
+        "bsonType": "string"
+      },
+      "title": {
+        "bsonType": "string"
+      },
+      "description": {
+        "bsonType": "string"
+      },
+      "anonymousEnabled": {
+        "bsonType": "bool"
+      },
+      "allowMultipleSubmissions": {
+        "bsonType": "bool"
+      },
+      "status": {
+        "enum": [
+          "DRAFT",
+          "PUBLISHED",
+          "CLOSED"
+        ]
+      },
+      "closesAt": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "questions": {
+        "bsonType": "array",
+        "maxItems": 200,
+        "items": {
+          "bsonType": "object",
+          "required": [
+            "questionId",
+            "order",
+            "title",
+            "type",
+            "required",
+            "options",
+            "constraints",
+            "rules"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "questionId": {
+              "bsonType": "string"
+            },
+            "order": {
+              "bsonType": [
+                "int",
+                "long"
+              ],
+              "minimum": 0
+            },
+            "title": {
+              "bsonType": "string"
+            },
+            "type": {
+              "enum": [
+                "SINGLE",
+                "MULTI",
+                "TEXT",
+                "NUMBER"
+              ]
+            },
+            "required": {
+              "bsonType": "bool"
+            },
+            "options": {
+              "bsonType": "array",
+              "maxItems": 100,
+              "items": {
+                "bsonType": "object",
+                "required": [
+                  "optionId",
+                  "label"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "optionId": {
+                    "bsonType": "string"
+                  },
+                  "label": {
+                    "bsonType": "string"
+                  }
+                }
+              }
+            },
+            "constraints": {
+              "bsonType": "object",
+              "required": [
+                "integerOnly"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "minSelections": {
+                  "bsonType": [
+                    "int",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "maxSelections": {
+                  "bsonType": [
+                    "int",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "minLength": {
+                  "bsonType": [
+                    "int",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "maxLength": {
+                  "bsonType": [
+                    "int",
+                    "null"
+                  ],
+                  "minimum": 0
+                },
+                "minValue": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "maxValue": {
+                  "bsonType": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "integerOnly": {
+                  "bsonType": "bool"
+                }
+              }
+            },
+            "rules": {
+              "bsonType": "array",
+              "maxItems": 50,
+              "items": {
+                "bsonType": "object",
+                "required": [
+                  "ruleId",
+                  "priority",
+                  "condition",
+                  "target"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "ruleId": {
+                    "bsonType": "string"
+                  },
+                  "priority": {
+                    "bsonType": [
+                      "int",
+                      "long"
+                    ],
+                    "minimum": 0
+                  },
+                  "condition": {
+                    "bsonType": "object",
+                    "required": [
+                      "op",
+                      "value"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "op": {
+                        "enum": [
+                          "eq",
+                          "contains_any",
+                          "contains_all",
+                          "set_equals",
+                          "gt",
+                          "gte",
+                          "lt",
+                          "lte",
+                          "between"
+                        ]
+                      },
+                      "value": {
+                        "oneOf": [
+                          {
+                            "bsonType": "string"
+                          },
+                          {
+                            "bsonType": "array",
+                            "items": {
+                              "bsonType": "string"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "target": {
+                    "bsonType": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "contentVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "ruleLanguageVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "publishedAt": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "closedAt": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      }
+    }
+  },
+  "responses": {
+    "bsonType": "object",
+    "required": [
+      "surveyId",
+      "contentVersion",
+      "respondentKey",
+      "identityKeyVersion",
+      "participationMode",
+      "repeatMode",
+      "attemptKey",
+      "status",
+      "answers",
+      "visitedQuestionIds",
+      "revision",
+      "startedAt",
+      "updatedAt",
+      "submittedAt",
+      "schemaVersion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "surveyId": {
+        "bsonType": "objectId"
+      },
+      "contentVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "respondentKey": {
+        "bsonType": "string"
+      },
+      "identityKeyVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "identifiedUserId": {
+        "bsonType": "objectId"
+      },
+      "participationMode": {
+        "enum": [
+          "IDENTIFIED",
+          "ANONYMOUS"
+        ]
+      },
+      "repeatMode": {
+        "enum": [
+          "SINGLE",
+          "MULTIPLE"
+        ]
+      },
+      "attemptKey": {
+        "bsonType": "string"
+      },
+      "status": {
+        "enum": [
+          "DRAFT",
+          "SUBMITTED"
+        ]
+      },
+      "answers": {
+        "bsonType": "array",
+        "maxItems": 200,
+        "items": {
+          "bsonType": "object",
+          "required": [
+            "questionId"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "questionId": {
+              "bsonType": "string"
+            },
+            "selectedOptionId": {
+              "bsonType": "string"
+            },
+            "selectedOptionIds": {
+              "bsonType": "array",
+              "items": {
+                "bsonType": "string"
+              },
+              "uniqueItems": true
+            },
+            "textValue": {
+              "bsonType": "string"
+            },
+            "numberValue": {
+              "bsonType": "decimal"
+            }
+          },
+          "maxProperties": 2
+        }
+      },
+      "visitedQuestionIds": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        },
+        "uniqueItems": true
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "submissionDigest": {
+        "bsonType": "string"
+      },
+      "admittedAt": {
+        "bsonType": "date"
+      },
+      "startedAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "submittedAt": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      }
+    }
+  },
+  "sessions": {
+    "bsonType": "object",
+    "required": [
+      "userId",
+      "tokenHash",
+      "createdAt",
+      "expiresAt",
+      "schemaVersion"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "userId": {
+        "bsonType": "objectId"
+      },
+      "tokenHash": {
+        "bsonType": "string"
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "expiresAt": {
+        "bsonType": "date"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      }
+    }
+  }
+}

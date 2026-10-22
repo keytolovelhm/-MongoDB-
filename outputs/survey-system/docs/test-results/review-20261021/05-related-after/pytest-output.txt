@@ -1,0 +1,62 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 24 items
+
+tests/test_review_20261021.py::test_numeric_equivalent_thresholds_are_duplicate[eq] PASSED [  4%]
+tests/test_review_20261021.py::test_numeric_equivalent_thresholds_are_duplicate[gt] PASSED [  8%]
+tests/test_review_20261021.py::test_numeric_equivalent_thresholds_are_duplicate[gte] PASSED [ 12%]
+tests/test_review_20261021.py::test_numeric_equivalent_thresholds_are_duplicate[lt] PASSED [ 16%]
+tests/test_review_20261021.py::test_numeric_equivalent_thresholds_are_duplicate[lte] PASSED [ 20%]
+tests/test_review_20261021.py::test_numeric_equivalent_spellings_are_duplicate[18-1.8e1] PASSED [ 25%]
+tests/test_review_20261021.py::test_numeric_equivalent_spellings_are_duplicate[+18-018.000] PASSED [ 29%]
+tests/test_review_20261021.py::test_numeric_equivalent_spellings_are_duplicate[-0-+0.0] PASSED [ 33%]
+tests/test_review_20261021.py::test_numeric_equivalent_spellings_are_duplicate[0.1-1e-1] PASSED [ 37%]
+tests/test_review_20261021.py::test_numeric_equivalent_spellings_are_duplicate[1234567890123456789012345678901234-1234567890123456789012345678901234.0] PASSED [ 41%]
+tests/test_review_20261021.py::test_numeric_equivalent_interval_endpoints_are_duplicate[first0-second0] PASSED [ 45%]
+tests/test_review_20261021.py::test_numeric_equivalent_interval_endpoints_are_duplicate[first1-second1] PASSED [ 50%]
+tests/test_review_20261021.py::test_numeric_equivalent_interval_endpoints_are_duplicate[first2-second2] PASSED [ 54%]
+tests/test_review_20261021.py::test_distinct_numeric_conditions_keep_priority_semantics[eq-18-eq-18.01] PASSED [ 58%]
+tests/test_review_20261021.py::test_distinct_numeric_conditions_keep_priority_semantics[gt-18-gte-18.0] PASSED [ 62%]
+tests/test_review_20261021.py::test_distinct_numeric_conditions_keep_priority_semantics[eq-1234567890123456789012345678901234-eq-1234567890123456789012345678901235] PASSED [ 66%]
+tests/test_review_20261021.py::test_distinct_numeric_conditions_keep_priority_semantics[between-value13-between-value23] PASSED [ 70%]
+tests/test_review_20261021.py::test_new_pending_question_also_prunes_old_later_answer PASSED [ 75%]
+tests/test_review_20261021.py::test_numeric_duplicates_rejected_at_definition_write_boundaries[create] PASSED [ 79%]
+tests/test_review_20261021.py::test_numeric_duplicates_rejected_at_definition_write_boundaries[update] PASSED [ 83%]
+tests/test_review_20261021.py::test_numeric_duplicates_rejected_at_definition_write_boundaries[publish] PASSED [ 87%]
+tests/test_review_20261021.py::test_legacy_published_rules_keep_v1_interpretation PASSED [ 91%]
+tests/test_review_20261021.py::test_conservative_pruning_response_and_stats_do_not_restore_later_answer PASSED [ 95%]
+tests/test_review_20261021.py::test_D09B_close_after_final_snapshot_can_precede_admitted_timestamp PASSED [100%]
+
+============================== warnings summary ===============================
+..\..\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\review-20261021\05-related-after\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102     17    83%   44-45, 48, 50, 59-61, 65-68, 71-72, 115-116, 118-119
+app\auth_service.py         34      5    85%   18, 22, 28, 37, 43
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              168     46    73%   11, 15, 19-20, 25, 28, 32, 38, 42, 45, 47, 53, 56, 58, 61, 66, 68-70, 74, 78, 83, 94, 96, 114, 119, 121-129, 132, 135, 137, 139, 143, 145, 147, 154, 161-162, 180
+app\errors.py                6      0   100%
+app\main.py                142     21    85%   60-61, 65-66, 73, 75, 83, 88-89, 103, 107-109, 113, 121, 133, 137, 141, 145, 153, 173
+app\models.py               68      5    93%   63-66, 68
+app\repositories.py         67      5    93%   16, 74-76, 81
+app\schema.py               35      2    94%   62, 78
+app\security.py             17      1    94%   16
+app\stats_service.py        49     14    71%   25-28, 55-68
+app\survey_service.py       82     22    73%   22, 24, 49-50, 55-56, 63-67, 92-98, 101-108
+------------------------------------------------------
+TOTAL                      794    149    81%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\review-20261021\05-related-after\coverage.json
+======================== 24 passed, 1 warning in 2.04s ========================

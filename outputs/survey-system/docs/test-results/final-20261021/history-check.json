@@ -1,0 +1,10 @@
+{
+  "baseline": "phase1-history-v1",
+  "fileHashes": "verified",
+  "collections": {
+    "users": 1,
+    "surveys": 1,
+    "responses": 4,
+    "sessions": 0
+  }
+}

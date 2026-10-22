@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="2.900" timestamp="2026-10-17T21:10:59.706046+08:00" hostname="LOCAL_TEST_HOST"><testcase classname="tests.test_launcher" name="test_mongo_process_ownership[43210]" time="0.120"><error message="failed on setup with &quot;OSError: could not create numbered dir with prefix pytest- in C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pytest-of-LOCAL_USER after 10 tries&quot;">..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:361: in from_call
+    result: TResult | None = func()
+                             ^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:250: in &lt;lambda&gt;
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\logging.py:858: in pytest_runtest_setup
+    yield
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\capture.py:895: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:170: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:536: in setup
+    col.setup()
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\python.py:1710: in setup
+    self._request._fillfixtures()
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:806: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:630: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:726: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:1232: in execute
+    result: FixtureValue = ihook.pytest_fixture_setup(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_execution.py:64: in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_execution.py:49: in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:1328: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:998: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:300: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:287: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:136: in mktemp
+    basename = self._ensure_relative_to_basetemp(basename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:117: in _ensure_relative_to_basetemp
+    if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
+        ^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:213: in getbasetemp
+    basetemp = make_numbered_dir_with_cleanup(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:420: in make_numbered_dir_with_cleanup
+    raise e
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:401: in make_numbered_dir_with_cleanup
+    p = make_numbered_dir(root, prefix, mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:239: in make_numbered_dir
+    raise OSError(
+E   OSError: could not create numbered dir with prefix pytest- in C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pytest-of-LOCAL_USER after 10 tries</error></testcase><testcase classname="tests.test_launcher" name="test_mongo_process_ownership[98765]" time="0.095"><error message="failed on setup with &quot;OSError: could not create numbered dir with prefix pytest- in C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pytest-of-LOCAL_USER after 10 tries&quot;">..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:361: in from_call
+    result: TResult | None = func()
+                             ^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:250: in &lt;lambda&gt;
+    lambda: runtest_hook(item=item, **kwds),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\logging.py:858: in pytest_runtest_setup
+    yield
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\capture.py:895: in pytest_runtest_setup
+    return (yield)
+            ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:170: in pytest_runtest_setup
+    item.session._setupstate.setup(item)
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\runner.py:536: in setup
+    col.setup()
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\python.py:1710: in setup
+    self._request._fillfixtures()
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:806: in _fillfixtures
+    item.funcargs[argname] = self.getfixturevalue(argname)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:630: in getfixturevalue
+    fixturedef = self._get_active_fixturedef(argname)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:726: in _get_active_fixturedef
+    fixturedef.execute(request=subrequest)
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:1232: in execute
+    result: FixtureValue = ihook.pytest_fixture_setup(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_caller.py:197: in __call__
+    return self._hookexec(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_manager.py:183: in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_execution.py:64: in run_old_style_hookwrapper
+    return result.get_result()
+           ^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\pluggy\_execution.py:49: in run_old_style_hookwrapper
+    res = yield
+          ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\setuponly.py:36: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:1328: in pytest_fixture_setup
+    result = call_fixture_func(fixturefunc, request, kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\fixtures.py:998: in call_fixture_func
+    fixture_result = next(generator)
+                     ^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:300: in tmp_path
+    path = _mk_tmp(request, tmp_path_factory)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:287: in _mk_tmp
+    return factory.mktemp(name, numbered=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:136: in mktemp
+    basename = self._ensure_relative_to_basetemp(basename)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:117: in _ensure_relative_to_basetemp
+    if (self.getbasetemp() / basename).resolve().parent != self.getbasetemp():
+        ^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\tmpdir.py:213: in getbasetemp
+    basetemp = make_numbered_dir_with_cleanup(
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:420: in make_numbered_dir_with_cleanup
+    raise e
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:401: in make_numbered_dir_with_cleanup
+    p = make_numbered_dir(root, prefix, mode)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\..\..\Codex\2026-10-17\docx-mongodb-ai-1-mongodb-schema\work\venv\Lib\site-packages\_pytest\pathlib.py:239: in make_numbered_dir
+    raise OSError(
+E   OSError: could not create numbered dir with prefix pytest- in C:\Users\LOCAL_USER\AppData\Local\Packages\sandbox.LOCAL\AC\Temp\pytest-of-LOCAL_USER after 10 tries</error></testcase></testsuite></testsuites>

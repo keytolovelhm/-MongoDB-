@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.683" timestamp="2026-10-17T16:24:18.230187+08:00" hostname="LOCAL_TEST_HOST"><testcase classname="tests.test_domain" name="test_required_question_cannot_have_zero_capacity[MULTI-constraints0]" time="0.006"><failure message="Failed: DID NOT RAISE AppError">typ = 'MULTI', constraints = {'maxSelections': 0}
+
+    @pytest.mark.parametrize('typ,constraints',[('MULTI',{'maxSelections':0}),('TEXT',{'maxLength':0})])
+    def test_required_question_cannot_have_zero_capacity(typ,constraints):
+&gt;       with pytest.raises(AppError):validate_definition(definition([question(typ=typ,required=True,constraints=constraints)]).model_dump(),True)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:123: Failed</failure></testcase><testcase classname="tests.test_domain" name="test_required_question_cannot_have_zero_capacity[TEXT-constraints1]" time="0.002"><failure message="Failed: DID NOT RAISE AppError">typ = 'TEXT', constraints = {'maxLength': 0}
+
+    @pytest.mark.parametrize('typ,constraints',[('MULTI',{'maxSelections':0}),('TEXT',{'maxLength':0})])
+    def test_required_question_cannot_have_zero_capacity(typ,constraints):
+&gt;       with pytest.raises(AppError):validate_definition(definition([question(typ=typ,required=True,constraints=constraints)]).model_dump(),True)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_domain.py:123: Failed</failure></testcase></testsuite></testsuites>

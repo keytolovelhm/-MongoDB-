@@ -1,0 +1,18 @@
+[
+  {
+    "_id": {
+      "$oid": "100000000000000000000001"
+    },
+    "username": "synthetic_owner",
+    "usernameNormalized": "synthetic_owner",
+    "passwordHash": "DISABLED_SYNTHETIC_HISTORY_ACCOUNT",
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1790812800000"
+      }
+    },
+    "schemaVersion": {
+      "$numberInt": "1"
+    }
+  }
+]

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="16" skipped="0" tests="24" time="2.368" timestamp="2026-10-21T17:20:32.550727+08:00" hostname="LOCAL_TEST_HOST"><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_thresholds_are_duplicate[eq]" time="0.006"><failure message="Failed: DID NOT RAISE AppError">op = 'eq'
+
+    @pytest.mark.parametrize('op', ['eq', 'gt', 'gte', 'lt', 'lte'])
+    def test_numeric_equivalent_thresholds_are_duplicate(op):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:23: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_thresholds_are_duplicate[gt]" time="0.002"><failure message="Failed: DID NOT RAISE AppError">op = 'gt'
+
+    @pytest.mark.parametrize('op', ['eq', 'gt', 'gte', 'lt', 'lte'])
+    def test_numeric_equivalent_thresholds_are_duplicate(op):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:23: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_thresholds_are_duplicate[gte]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">op = 'gte'
+
+    @pytest.mark.parametrize('op', ['eq', 'gt', 'gte', 'lt', 'lte'])
+    def test_numeric_equivalent_thresholds_are_duplicate(op):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:23: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_thresholds_are_duplicate[lt]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">op = 'lt'
+
+    @pytest.mark.parametrize('op', ['eq', 'gt', 'gte', 'lt', 'lte'])
+    def test_numeric_equivalent_thresholds_are_duplicate(op):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:23: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_thresholds_are_duplicate[lte]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">op = 'lte'
+
+    @pytest.mark.parametrize('op', ['eq', 'gt', 'gte', 'lt', 'lte'])
+    def test_numeric_equivalent_thresholds_are_duplicate(op):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:23: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_spellings_are_duplicate[18-1.8e1]" time="0.002"><failure message="Failed: DID NOT RAISE AppError">first = '18', second = '1.8e1'
+
+    @pytest.mark.parametrize('first,second', [
+        ('18', '1.8e1'), ('+18', '018.000'), ('-0', '+0.0'), ('0.1', '1e-1'),
+        ('1234567890123456789012345678901234', '1234567890123456789012345678901234.0'),
+    ])
+    def test_numeric_equivalent_spellings_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:33: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_spellings_are_duplicate[+18-018.000]" time="0.002"><failure message="Failed: DID NOT RAISE AppError">first = '+18', second = '018.000'
+
+    @pytest.mark.parametrize('first,second', [
+        ('18', '1.8e1'), ('+18', '018.000'), ('-0', '+0.0'), ('0.1', '1e-1'),
+        ('1234567890123456789012345678901234', '1234567890123456789012345678901234.0'),
+    ])
+    def test_numeric_equivalent_spellings_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:33: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_spellings_are_duplicate[-0-+0.0]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">first = '-0', second = '+0.0'
+
+    @pytest.mark.parametrize('first,second', [
+        ('18', '1.8e1'), ('+18', '018.000'), ('-0', '+0.0'), ('0.1', '1e-1'),
+        ('1234567890123456789012345678901234', '1234567890123456789012345678901234.0'),
+    ])
+    def test_numeric_equivalent_spellings_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:33: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_spellings_are_duplicate[0.1-1e-1]" time="0.002"><failure message="Failed: DID NOT RAISE AppError">first = '0.1', second = '1e-1'
+
+    @pytest.mark.parametrize('first,second', [
+        ('18', '1.8e1'), ('+18', '018.000'), ('-0', '+0.0'), ('0.1', '1e-1'),
+        ('1234567890123456789012345678901234', '1234567890123456789012345678901234.0'),
+    ])
+    def test_numeric_equivalent_spellings_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:33: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_spellings_are_duplicate[1234567890123456789012345678901234-1234567890123456789012345678901234.0]" time="0.008"><failure message="Failed: DID NOT RAISE AppError">first = '1234567890123456789012345678901234'
+second = '1234567890123456789012345678901234.0'
+
+    @pytest.mark.parametrize('first,second', [
+        ('18', '1.8e1'), ('+18', '018.000'), ('-0', '+0.0'), ('0.1', '1e-1'),
+        ('1234567890123456789012345678901234', '1234567890123456789012345678901234.0'),
+    ])
+    def test_numeric_equivalent_spellings_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:33: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_interval_endpoints_are_duplicate[first0-second0]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">first = ['18', '20'], second = ['18.0', '2e1']
+
+    @pytest.mark.parametrize('first,second', [
+        (['18', '20'], ['18.0', '2e1']),
+        (['-0', '0.1'], ['0.0', '1e-1']),
+        (['18', '18'], ['1.8e1', '18.00']),
+    ])
+    def test_numeric_equivalent_interval_endpoints_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:44: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_interval_endpoints_are_duplicate[first1-second1]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">first = ['-0', '0.1'], second = ['0.0', '1e-1']
+
+    @pytest.mark.parametrize('first,second', [
+        (['18', '20'], ['18.0', '2e1']),
+        (['-0', '0.1'], ['0.0', '1e-1']),
+        (['18', '18'], ['1.8e1', '18.00']),
+    ])
+    def test_numeric_equivalent_interval_endpoints_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:44: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_equivalent_interval_endpoints_are_duplicate[first2-second2]" time="0.001"><failure message="Failed: DID NOT RAISE AppError">first = ['18', '18'], second = ['1.8e1', '18.00']
+
+    @pytest.mark.parametrize('first,second', [
+        (['18', '20'], ['18.0', '2e1']),
+        (['-0', '0.1'], ['0.0', '1e-1']),
+        (['18', '18'], ['1.8e1', '18.00']),
+    ])
+    def test_numeric_equivalent_interval_endpoints_are_duplicate(first, second):
+&gt;       with pytest.raises(AppError) as caught:
+             ^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE AppError
+
+tests\test_review_20261021.py:44: Failed</failure></testcase><testcase classname="tests.test_review_20261021" name="test_distinct_numeric_conditions_keep_priority_semantics[eq-18-eq-18.01]" time="0.001" /><testcase classname="tests.test_review_20261021" name="test_distinct_numeric_conditions_keep_priority_semantics[gt-18-gte-18.0]" time="0.001" /><testcase classname="tests.test_review_20261021" name="test_distinct_numeric_conditions_keep_priority_semantics[eq-1234567890123456789012345678901234-eq-1234567890123456789012345678901235]" time="0.002" /><testcase classname="tests.test_review_20261021" name="test_distinct_numeric_conditions_keep_priority_semantics[between-value13-between-value23]" time="0.001" /><testcase classname="tests.test_review_20261021" name="test_new_pending_question_also_prunes_old_later_answer" time="0.001" /><testcase classname="tests.test_review_20261021" name="test_numeric_duplicates_rejected_at_definition_write_boundaries[create]" time="0.534"><failure message="AssertionError: {&quot;closesAt&quot;:null,&quot;title&quot;:&quot;测试问卷&quot;,&quot;description&quot;:&quot;&quot;,&quot;anonymousEnabled&quot;:false,&quot;allowMultipleSubmissions&quot;:false,&quot;questions&quot;:[{&quot;questionId&quot;:&quot;q1&quot;,&quot;order&quot;:0,&quot;title&quot;:&quot;q1&quot;,&quot;type&quot;:&quot;NUMBER&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[{&quot;ruleId&quot;:&quot;28a34841b30140dab083f5c09d03aec0&quot;,&quot;priority&quot;:0,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18&quot;},&quot;target&quot;:&quot;q2&quot;},{&quot;ruleId&quot;:&quot;51b600c7d19947af96f4cba68d051b3d&quot;,&quot;priority&quot;:1,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18.0&quot;},&quot;target&quot;:&quot;END&quot;}]},{&quot;questionId&quot;:&quot;q2&quot;,&quot;order&quot;:1,&quot;title&quot;:&quot;q2&quot;,&quot;type&quot;:&quot;TEXT&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[]}],&quot;id&quot;:&quot;6ad883e1ef8b508b921261e3&quot;,&quot;ownerId&quot;:&quot;6ad883e1ef8b508b921261e1&quot;,&quot;shareSlug&quot;:&quot;q_C-qApaEgDdm9Pq&quot;,&quot;status&quot;:&quot;DRAFT&quot;,&quot;contentVersion&quot;:1,&quot;ruleLanguageVersion&quot;:1,&quot;revision&quot;:0,&quot;schemaVersion&quot;:1,&quot;createdAt&quot;:&quot;2026-10-21T09:20:33.534221Z&quot;,&quot;updatedAt&quot;:&quot;2026-10-21T09:20:33.534221Z&quot;,&quot;publishedAt&quot;:null,&quot;closedAt&quot;:null,&quot;effectiveStatus&quot;:&quot;DRAFT&quot;}&#10;assert 201 == 422&#10; +  where 201 = &lt;Response [201 Created]&gt;.status_code">env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x00000271904C7B10&gt;, client=&lt;starlette.testclient.TestClient obj...3aa8', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x000002719076FCE0&gt;
+operation = 'create'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize('operation', ['create', 'update', 'publish'])
+    def test_numeric_duplicates_rejected_at_definition_write_boundaries(env, actor, operation):
+        owner = actor()
+        data = numeric_definition('gte', '18', '18.0')
+        if operation == 'create':
+&gt;           result = owner.call('POST', '/surveys', data, 422)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_review_20261021.py:81: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.conftest.Actor object at 0x00000271906A38C0&gt;, method = 'POST'
+path = '/surveys'
+data = {'closesAt': None, 'title': '测试问卷', 'description': '', 'anonymousEnabled': False, ...}
+status = 422
+
+    def call(self,method,path,data=None,status=200):
+        r=self.env.client.request(method,'/api'+path,headers=self.headers,**({'json':data} if data is not None else {}))
+&gt;       assert r.status_code==status,r.text
+E       AssertionError: {"closesAt":null,"title":"测试问卷","description":"","anonymousEnabled":false,"allowMultipleSubmissions":false,"questions":[{"questionId":"q1","order":0,"title":"q1","type":"NUMBER","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[{"ruleId":"28a34841b30140dab083f5c09d03aec0","priority":0,"condition":{"op":"gte","value":"18"},"target":"q2"},{"ruleId":"51b600c7d19947af96f4cba68d051b3d","priority":1,"condition":{"op":"gte","value":"18.0"},"target":"END"}]},{"questionId":"q2","order":1,"title":"q2","type":"TEXT","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[]}],"id":"6ad883e1ef8b508b921261e3","ownerId":"6ad883e1ef8b508b921261e1","shareSlug":"q_C-qApaEgDdm9Pq","status":"DRAFT","contentVersion":1,"ruleLanguageVersion":1,"revision":0,"schemaVersion":1,"createdAt":"2026-10-21T09:20:33.534221Z","updatedAt":"2026-10-21T09:20:33.534221Z","publishedAt":null,"closedAt":null,"effectiveStatus":"DRAFT"}
+E       assert 201 == 422
+E        +  where 201 = &lt;Response [201 Created]&gt;.status_code
+
+tests\conftest.py:41: AssertionError</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_duplicates_rejected_at_definition_write_boundaries[update]" time="0.087"><failure message="AssertionError: {&quot;id&quot;:&quot;6ad883e1ef8b508b921261e6&quot;,&quot;closesAt&quot;:null,&quot;title&quot;:&quot;测试问卷&quot;,&quot;description&quot;:&quot;&quot;,&quot;anonymousEnabled&quot;:false,&quot;allowMultipleSubmissions&quot;:false,&quot;questions&quot;:[{&quot;questionId&quot;:&quot;q1&quot;,&quot;order&quot;:0,&quot;title&quot;:&quot;q1&quot;,&quot;type&quot;:&quot;NUMBER&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[{&quot;ruleId&quot;:&quot;c90284a1343746e98f8b4fc0b99dd3ca&quot;,&quot;priority&quot;:0,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18&quot;},&quot;target&quot;:&quot;q2&quot;},{&quot;ruleId&quot;:&quot;81dea5e4718c437dbd3032c935336f23&quot;,&quot;priority&quot;:1,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18.0&quot;},&quot;target&quot;:&quot;END&quot;}]},{&quot;questionId&quot;:&quot;q2&quot;,&quot;order&quot;:1,&quot;title&quot;:&quot;q2&quot;,&quot;type&quot;:&quot;TEXT&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[]}],&quot;ownerId&quot;:&quot;6ad883e1ef8b508b921261e4&quot;,&quot;shareSlug&quot;:&quot;vMK3TWsGzI3X5Fvx&quot;,&quot;status&quot;:&quot;DRAFT&quot;,&quot;contentVersion&quot;:1,&quot;ruleLanguageVersion&quot;:1,&quot;revision&quot;:1,&quot;schemaVersion&quot;:1,&quot;createdAt&quot;:&quot;2026-10-21T09:20:33.627000Z&quot;,&quot;updatedAt&quot;:&quot;2026-10-21T09:20:33.636000Z&quot;,&quot;publishedAt&quot;:null,&quot;closedAt&quot;:null,&quot;effectiveStatus&quot;:&quot;DRAFT&quot;}&#10;assert 200 == 422&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code">env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x00000271904C7B10&gt;, client=&lt;starlette.testclient.TestClient obj...3aa8', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x0000027190528E00&gt;
+operation = 'update'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize('operation', ['create', 'update', 'publish'])
+    def test_numeric_duplicates_rejected_at_definition_write_boundaries(env, actor, operation):
+        owner = actor()
+        data = numeric_definition('gte', '18', '18.0')
+        if operation == 'create':
+            result = owner.call('POST', '/surveys', data, 422)
+            assert env.store.db.surveys.count_documents({}) == 0
+        else:
+            valid = deepcopy(data)
+            valid['questions'][0]['rules'].pop()
+            draft = owner.call('POST', '/surveys', valid, 201)
+            if operation == 'update':
+&gt;               result = owner.call('PUT', '/surveys/' + draft['id'], dict(data, revision=draft['revision']), 422)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_review_20261021.py:88: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.conftest.Actor object at 0x0000027190697750&gt;, method = 'PUT'
+path = '/surveys/6ad883e1ef8b508b921261e6'
+data = {'closesAt': None, 'title': '测试问卷', 'description': '', 'anonymousEnabled': False, ...}
+status = 422
+
+    def call(self,method,path,data=None,status=200):
+        r=self.env.client.request(method,'/api'+path,headers=self.headers,**({'json':data} if data is not None else {}))
+&gt;       assert r.status_code==status,r.text
+E       AssertionError: {"id":"6ad883e1ef8b508b921261e6","closesAt":null,"title":"测试问卷","description":"","anonymousEnabled":false,"allowMultipleSubmissions":false,"questions":[{"questionId":"q1","order":0,"title":"q1","type":"NUMBER","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[{"ruleId":"c90284a1343746e98f8b4fc0b99dd3ca","priority":0,"condition":{"op":"gte","value":"18"},"target":"q2"},{"ruleId":"81dea5e4718c437dbd3032c935336f23","priority":1,"condition":{"op":"gte","value":"18.0"},"target":"END"}]},{"questionId":"q2","order":1,"title":"q2","type":"TEXT","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[]}],"ownerId":"6ad883e1ef8b508b921261e4","shareSlug":"vMK3TWsGzI3X5Fvx","status":"DRAFT","contentVersion":1,"ruleLanguageVersion":1,"revision":1,"schemaVersion":1,"createdAt":"2026-10-21T09:20:33.627000Z","updatedAt":"2026-10-21T09:20:33.636000Z","publishedAt":null,"closedAt":null,"effectiveStatus":"DRAFT"}
+E       assert 200 == 422
+E        +  where 200 = &lt;Response [200 OK]&gt;.status_code
+
+tests\conftest.py:41: AssertionError</failure></testcase><testcase classname="tests.test_review_20261021" name="test_numeric_duplicates_rejected_at_definition_write_boundaries[publish]" time="0.072"><failure message="AssertionError: {&quot;id&quot;:&quot;6ad883e1ef8b508b921261e9&quot;,&quot;closesAt&quot;:null,&quot;title&quot;:&quot;测试问卷&quot;,&quot;description&quot;:&quot;&quot;,&quot;anonymousEnabled&quot;:false,&quot;allowMultipleSubmissions&quot;:false,&quot;questions&quot;:[{&quot;questionId&quot;:&quot;q1&quot;,&quot;order&quot;:0,&quot;title&quot;:&quot;q1&quot;,&quot;type&quot;:&quot;NUMBER&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[{&quot;ruleId&quot;:&quot;4ab537fa96f848da98b0aa5ea61419ea&quot;,&quot;priority&quot;:0,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18&quot;},&quot;target&quot;:&quot;q2&quot;},{&quot;ruleId&quot;:&quot;a59a92ebb4e1477590634e67dbbee5f2&quot;,&quot;priority&quot;:1,&quot;condition&quot;:{&quot;op&quot;:&quot;gte&quot;,&quot;value&quot;:&quot;18.0&quot;},&quot;target&quot;:&quot;END&quot;}]},{&quot;questionId&quot;:&quot;q2&quot;,&quot;order&quot;:1,&quot;title&quot;:&quot;q2&quot;,&quot;type&quot;:&quot;TEXT&quot;,&quot;required&quot;:false,&quot;options&quot;:[],&quot;constraints&quot;:{&quot;minSelections&quot;:null,&quot;maxSelections&quot;:null,&quot;minLength&quot;:null,&quot;maxLength&quot;:null,&quot;minValue&quot;:null,&quot;maxValue&quot;:null,&quot;integerOnly&quot;:false},&quot;rules&quot;:[]}],&quot;ownerId&quot;:&quot;6ad883e1ef8b508b921261e7&quot;,&quot;shareSlug&quot;:&quot;xY2qWPBTEGX9SCvG&quot;,&quot;status&quot;:&quot;PUBLISHED&quot;,&quot;contentVersion&quot;:1,&quot;ruleLanguageVersion&quot;:1,&quot;revision&quot;:1,&quot;schemaVersion&quot;:1,&quot;createdAt&quot;:&quot;2026-10-21T09:20:33.708000Z&quot;,&quot;updatedAt&quot;:&quot;2026-10-21T09:20:33.718000Z&quot;,&quot;publishedAt&quot;:&quot;2026-10-21T09:20:33.718000Z&quot;,&quot;closedAt&quot;:null,&quot;effectiveStatus&quot;:&quot;PUBLISHED&quot;}&#10;assert 200 == 422&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code">env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x00000271904C7B10&gt;, client=&lt;starlette.testclient.TestClient obj...3aa8', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x00000271908C2DE0&gt;
+operation = 'publish'
+
+    @pytest.mark.integration
+    @pytest.mark.parametrize('operation', ['create', 'update', 'publish'])
+    def test_numeric_duplicates_rejected_at_definition_write_boundaries(env, actor, operation):
+        owner = actor()
+        data = numeric_definition('gte', '18', '18.0')
+        if operation == 'create':
+            result = owner.call('POST', '/surveys', data, 422)
+            assert env.store.db.surveys.count_documents({}) == 0
+        else:
+            valid = deepcopy(data)
+            valid['questions'][0]['rules'].pop()
+            draft = owner.call('POST', '/surveys', valid, 201)
+            if operation == 'update':
+                result = owner.call('PUT', '/surveys/' + draft['id'], dict(data, revision=draft['revision']), 422)
+            else:
+                # Simulate a draft written by the earlier version, before this validation fix.
+                env.store.db.surveys.update_one({'_id': ObjectId(draft['id'])},
+                                               {'$set': {'questions': data['questions']}})
+&gt;               result = owner.call('POST', f"/surveys/{draft['id']}/publish", {'revision': draft['revision']}, 422)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_review_20261021.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.conftest.Actor object at 0x00000271904C79D0&gt;, method = 'POST'
+path = '/surveys/6ad883e1ef8b508b921261e9/publish', data = {'revision': 0}
+status = 422
+
+    def call(self,method,path,data=None,status=200):
+        r=self.env.client.request(method,'/api'+path,headers=self.headers,**({'json':data} if data is not None else {}))
+&gt;       assert r.status_code==status,r.text
+E       AssertionError: {"id":"6ad883e1ef8b508b921261e9","closesAt":null,"title":"测试问卷","description":"","anonymousEnabled":false,"allowMultipleSubmissions":false,"questions":[{"questionId":"q1","order":0,"title":"q1","type":"NUMBER","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[{"ruleId":"4ab537fa96f848da98b0aa5ea61419ea","priority":0,"condition":{"op":"gte","value":"18"},"target":"q2"},{"ruleId":"a59a92ebb4e1477590634e67dbbee5f2","priority":1,"condition":{"op":"gte","value":"18.0"},"target":"END"}]},{"questionId":"q2","order":1,"title":"q2","type":"TEXT","required":false,"options":[],"constraints":{"minSelections":null,"maxSelections":null,"minLength":null,"maxLength":null,"minValue":null,"maxValue":null,"integerOnly":false},"rules":[]}],"ownerId":"6ad883e1ef8b508b921261e7","shareSlug":"xY2qWPBTEGX9SCvG","status":"PUBLISHED","contentVersion":1,"ruleLanguageVersion":1,"revision":1,"schemaVersion":1,"createdAt":"2026-10-21T09:20:33.708000Z","updatedAt":"2026-10-21T09:20:33.718000Z","publishedAt":"2026-10-21T09:20:33.718000Z","closedAt":null,"effectiveStatus":"PUBLISHED"}
+E       assert 200 == 422
+E        +  where 200 = &lt;Response [200 OK]&gt;.status_code
+
+tests\conftest.py:41: AssertionError</failure></testcase><testcase classname="tests.test_review_20261021" name="test_legacy_published_rules_keep_v1_interpretation" time="0.293" /><testcase classname="tests.test_review_20261021" name="test_conservative_pruning_response_and_stats_do_not_restore_later_answer" time="0.137" /><testcase classname="tests.test_review_20261021" name="test_D09B_close_after_final_snapshot_can_precede_admitted_timestamp" time="0.229" /></testsuite></testsuites>

@@ -1,0 +1,14 @@
+{
+  "surveyId": "200000000000000000000001",
+  "contentVersion": 1,
+  "responseCount": 3,
+  "respondentCount": 2,
+  "questions": [
+    {"questionId": "q_route", "title": "填写路径", "type": "SINGLE", "answerCount": 3, "respondentCount": 2, "reachedCount": 3,
+     "options": [{"optionId": "full", "label": "完整", "count": 2, "respondentCount": 2}, {"optionId": "short", "label": "简短", "count": 1, "respondentCount": 1}]},
+    {"questionId": "q_tools", "title": "工具偏好", "type": "MULTI", "answerCount": 2, "respondentCount": 2, "reachedCount": 2,
+     "options": [{"optionId": "x", "label": "工具X", "count": 1, "respondentCount": 1}, {"optionId": "y", "label": "工具Y", "count": 2, "respondentCount": 2}, {"optionId": "z", "label": "工具Z", "count": 0, "respondentCount": 0}]},
+    {"questionId": "q_score", "title": "示例评分", "type": "NUMBER", "answerCount": 2, "respondentCount": 1, "reachedCount": 3, "mean": "15"},
+    {"questionId": "q_note", "title": "合成备注", "type": "TEXT", "answerCount": 3, "respondentCount": 2, "reachedCount": 3}
+  ]
+}

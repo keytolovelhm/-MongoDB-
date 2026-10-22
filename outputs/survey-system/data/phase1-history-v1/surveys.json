@@ -1,0 +1,171 @@
+[
+  {
+    "_id": {
+      "$oid": "200000000000000000000001"
+    },
+    "ownerId": {
+      "$oid": "100000000000000000000001"
+    },
+    "shareSlug": "phase1-history-v1",
+    "title": "阶段一合成历史问卷",
+    "description": "仅用于兼容性回归，无真实个人信息",
+    "anonymousEnabled": true,
+    "allowMultipleSubmissions": true,
+    "status": "CLOSED",
+    "closesAt": null,
+    "questions": [
+      {
+        "questionId": "q_route",
+        "order": {
+          "$numberInt": "0"
+        },
+        "title": "填写路径",
+        "type": "SINGLE",
+        "required": true,
+        "options": [
+          {
+            "optionId": "full",
+            "label": "完整"
+          },
+          {
+            "optionId": "short",
+            "label": "简短"
+          }
+        ],
+        "constraints": {
+          "minSelections": null,
+          "maxSelections": null,
+          "minLength": null,
+          "maxLength": null,
+          "minValue": null,
+          "maxValue": null,
+          "integerOnly": false
+        },
+        "rules": [
+          {
+            "ruleId": "route_short",
+            "priority": {
+              "$numberInt": "0"
+            },
+            "condition": {
+              "op": "eq",
+              "value": "short"
+            },
+            "target": "q_score"
+          }
+        ]
+      },
+      {
+        "questionId": "q_tools",
+        "order": {
+          "$numberInt": "1"
+        },
+        "title": "工具偏好",
+        "type": "MULTI",
+        "required": false,
+        "options": [
+          {
+            "optionId": "x",
+            "label": "工具X"
+          },
+          {
+            "optionId": "y",
+            "label": "工具Y"
+          },
+          {
+            "optionId": "z",
+            "label": "工具Z"
+          }
+        ],
+        "constraints": {
+          "minSelections": {
+            "$numberInt": "1"
+          },
+          "maxSelections": {
+            "$numberInt": "2"
+          },
+          "minLength": null,
+          "maxLength": null,
+          "minValue": null,
+          "maxValue": null,
+          "integerOnly": false
+        },
+        "rules": []
+      },
+      {
+        "questionId": "q_score",
+        "order": {
+          "$numberInt": "2"
+        },
+        "title": "示例评分",
+        "type": "NUMBER",
+        "required": false,
+        "options": [],
+        "constraints": {
+          "minSelections": null,
+          "maxSelections": null,
+          "minLength": null,
+          "maxLength": null,
+          "minValue": "0",
+          "maxValue": "100",
+          "integerOnly": false
+        },
+        "rules": []
+      },
+      {
+        "questionId": "q_note",
+        "order": {
+          "$numberInt": "3"
+        },
+        "title": "合成备注",
+        "type": "TEXT",
+        "required": true,
+        "options": [],
+        "constraints": {
+          "minSelections": null,
+          "maxSelections": null,
+          "minLength": null,
+          "maxLength": {
+            "$numberInt": "50"
+          },
+          "minValue": null,
+          "maxValue": null,
+          "integerOnly": false
+        },
+        "rules": []
+      }
+    ],
+    "schemaVersion": {
+      "$numberInt": "1"
+    },
+    "contentVersion": {
+      "$numberInt": "1"
+    },
+    "ruleLanguageVersion": {
+      "$numberInt": "1"
+    },
+    "revision": {
+      "$numberInt": "2"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1790812800000"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1790899200000"
+      }
+    },
+    "publishedAt": {
+      "$date": {
+        "$numberLong": "1790812800000"
+      }
+    },
+    "closedAt": {
+      "$date": {
+        "$numberLong": "1790899200000"
+      }
+    }
+  }
+]

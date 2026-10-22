@@ -1,0 +1,188 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 102 items
+
+tests/test_api.py::test_T01_auth_password_duplicate_logout_and_csrf PASSED [  0%]
+tests/test_api.py::test_T02_owner_isolation_and_T06_sharing PASSED       [  1%]
+tests/test_api.py::test_T03_T04_editor_ids_revision_freeze PASSED        [  2%]
+tests/test_api.py::test_T05_deadline_close_and_closed_receipt PASSED     [  3%]
+tests/test_api.py::test_expired_draft_cannot_save_or_submit PASSED       [  4%]
+tests/test_api.py::test_T07_T11_value_validation_is_server_side PASSED   [  5%]
+tests/test_api.py::test_T12_T17_route_priority_recompute_skip_and_hidden_rejection PASSED [  6%]
+tests/test_api.py::test_T18_anonymous_hidden_and_repeat_mode_enforced PASSED [  7%]
+tests/test_api.py::test_T19_T20_T21_restore_optimistic_lock_and_idempotency PASSED [  8%]
+tests/test_api.py::test_T24_T26_statistics_known_values_and_pagination PASSED [  9%]
+tests/test_api.py::test_T22_fifty_people_concurrent_real_mongo PASSED    [ 10%]
+tests/test_api.py::test_T23_single_person_two_concurrent_sessions PASSED [ 11%]
+tests/test_api.py::test_T27_D09B_admitted_before_close_can_commit_after_close PASSED [ 12%]
+tests/test_api.py::test_T28_schema_reinitialization_preserves_stage1_baseline PASSED [ 13%]
+tests/test_api.py::test_T30_real_database_schema_indexes_expired_session PASSED [ 14%]
+tests/test_api.py::test_health_openapi_request_limit_and_db_error PASSED [ 15%]
+tests/test_api.py::test_closed_definition_supports_readonly_saved_answers PASSED [ 16%]
+tests/test_domain.py::test_decimal_exact[0-0] PASSED                     [ 17%]
+tests/test_domain.py::test_decimal_exact[-1.25--1.25] PASSED             [ 18%]
+tests/test_domain.py::test_decimal_exact[1e3-1000] PASSED                [ 19%]
+tests/test_domain.py::test_decimal_exact[13800138000-13800138000] PASSED [ 20%]
+tests/test_domain.py::test_decimal_exact[.5-0.5] PASSED                  [ 21%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[True] PASSED [ 22%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[False] PASSED [ 23%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[1] PASSED [ 24%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[1.5] PASSED [ 25%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[NaN] PASSED [ 26%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[Infinity] PASSED [ 27%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[1e99999] PASSED [ 28%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[12345678901234567890123456789012345] PASSED [ 29%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[value8] PASSED [ 30%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[1,000] PASSED [ 31%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[\uff11\uff12] PASSED [ 32%]
+tests/test_domain.py::test_decimal_rejects_invalid_and_inexact[-] PASSED [ 33%]
+tests/test_domain.py::test_integer_range[-1-False] PASSED                [ 34%]
+tests/test_domain.py::test_integer_range[0-True] PASSED                  [ 35%]
+tests/test_domain.py::test_integer_range[120-True] PASSED                [ 36%]
+tests/test_domain.py::test_integer_range[121-False] PASSED               [ 37%]
+tests/test_domain.py::test_integer_range[1.5-False] PASSED               [ 38%]
+tests/test_domain.py::test_integer_range[1.0-True] PASSED                [ 39%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value0-False] PASSED [ 40%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value1-True] PASSED [ 41%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value2-True] PASSED [ 42%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value3-False] PASSED [ 43%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value4-False] PASSED [ 44%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[value5-False] PASSED [ 45%]
+tests/test_domain.py::test_multi_bounds_and_duplicates[True-False] PASSED [ 46%]
+tests/test_domain.py::test_exact_selection_and_optional_skip PASSED      [ 47%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[a-False] PASSED [ 48%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[\u4e2d\u6587-True] PASSED [ 49%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[\u4e2d\u6587\U0001f642-True] PASSED [ 50%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[abcd-True] PASSED [ 50%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[abcde-False] PASSED [ 51%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[  \u4e2d\u6587  -True] PASSED [ 52%]
+tests/test_domain.py::test_text_codepoints_and_whitespace[   -False] PASSED [ 53%]
+tests/test_domain.py::test_rule_semantics[contains_any-expected0-value0-True] PASSED [ 54%]
+tests/test_domain.py::test_rule_semantics[contains_all-expected1-value1-False] PASSED [ 55%]
+tests/test_domain.py::test_rule_semantics[contains_all-expected2-value2-True] PASSED [ 56%]
+tests/test_domain.py::test_rule_semantics[set_equals-expected3-value3-True] PASSED [ 57%]
+tests/test_domain.py::test_rule_semantics[set_equals-expected4-value4-False] PASSED [ 58%]
+tests/test_domain.py::test_rule_semantics[gte-18-value5-True] PASSED     [ 59%]
+tests/test_domain.py::test_rule_semantics[gt-18-value6-False] PASSED     [ 60%]
+tests/test_domain.py::test_rule_semantics[lt-18-value7-True] PASSED      [ 61%]
+tests/test_domain.py::test_rule_semantics[lte-18-value8-True] PASSED     [ 62%]
+tests/test_domain.py::test_rule_semantics[eq-0.1-value9-True] PASSED     [ 63%]
+tests/test_domain.py::test_rule_semantics[between-expected10-value10-True] PASSED [ 64%]
+tests/test_domain.py::test_rule_semantics[between-expected11-value11-False] PASSED [ 65%]
+tests/test_domain.py::test_priority_jump_and_clear_old_branch PASSED     [ 66%]
+tests/test_domain.py::test_multi_first_match_and_end PASSED              [ 67%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>0] PASSED    [ 68%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>1] PASSED    [ 69%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>2] PASSED    [ 70%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>3] PASSED    [ 71%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>4] PASSED    [ 72%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>5] PASSED    [ 73%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>6] PASSED    [ 74%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>7] PASSED    [ 75%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>8] PASSED    [ 76%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>9] PASSED    [ 77%]
+tests/test_domain.py::test_bad_definitions_rejected[<lambda>10] PASSED   [ 78%]
+tests/test_domain.py::test_impossible_constraints[MULTI-constraints0] PASSED [ 79%]
+tests/test_domain.py::test_impossible_constraints[MULTI-constraints1] PASSED [ 80%]
+tests/test_domain.py::test_impossible_constraints[TEXT-constraints2] PASSED [ 81%]
+tests/test_domain.py::test_impossible_constraints[NUMBER-constraints3] PASSED [ 82%]
+tests/test_domain.py::test_impossible_constraints[NUMBER-constraints4] PASSED [ 83%]
+tests/test_domain.py::test_missing_optional_is_a_pending_step_and_required_skip_is_legal PASSED [ 84%]
+tests/test_domain.py::test_deadline_inclusive_and_version_guard PASSED   [ 85%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[SINGLE-value0] PASSED [ 86%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[TEXT-value1] PASSED [ 87%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[NUMBER-value2] PASSED [ 88%]
+tests/test_domain.py::test_optional_wrong_empty_type_is_not_a_skip[MULTI-] PASSED [ 89%]
+tests/test_domain.py::test_required_question_cannot_have_zero_capacity[MULTI-constraints0] PASSED [ 90%]
+tests/test_domain.py::test_required_question_cannot_have_zero_capacity[TEXT-constraints1] PASSED [ 91%]
+tests/test_history_baseline.py::test_deterministic_fixture_and_valid_paths PASSED [ 92%]
+tests/test_history_baseline.py::test_tampered_fixture_rejected ERROR     [ 93%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[questionnaire_stage1] PASSED [ 94%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[admin] PASSED [ 95%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[survey_history_] PASSED [ 96%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[survey_history_x.y] PASSED [ 97%]
+tests/test_history_baseline.py::test_restore_and_readonly_verify PASSED  [ 98%]
+tests/test_launcher.py::test_mongo_process_ownership[43210] ERROR        [ 99%]
+tests/test_launcher.py::test_mongo_process_ownership[98765] ERROR        [100%]
+
+=================================== ERRORS ====================================
+______________ ERROR at setup of test_tampered_fixture_rejected _______________
+
+self = WindowsPath('C:/Users/LOCAL_USER/Documents/ChatGPT/当代数据管理系统/outputs/survey-system/.runtime/pytest-run11')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\LOCAL_USER\\Documents\\ChatGPT\\当代数据管理系统\\outputs\\survey-system\\.runtime\\pytest-run11'
+
+C:\Users\LOCAL_USER\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: FileNotFoundError
+____________ ERROR at setup of test_mongo_process_ownership[43210] ____________
+
+self = WindowsPath('C:/Users/LOCAL_USER/Documents/ChatGPT/当代数据管理系统/outputs/survey-system/.runtime/pytest-run11')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\LOCAL_USER\\Documents\\ChatGPT\\当代数据管理系统\\outputs\\survey-system\\.runtime\\pytest-run11'
+
+C:\Users\LOCAL_USER\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: FileNotFoundError
+____________ ERROR at setup of test_mongo_process_ownership[98765] ____________
+
+self = WindowsPath('C:/Users/LOCAL_USER/Documents/ChatGPT/当代数据管理系统/outputs/survey-system/.runtime/pytest-run11')
+mode = 448, parents = False, exist_ok = False
+
+    def mkdir(self, mode=0o777, parents=False, exist_ok=False):
+        """
+        Create a new directory at this given path.
+        """
+        try:
+>           os.mkdir(self, mode)
+E           FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\LOCAL_USER\\Documents\\ChatGPT\\当代数据管理系统\\outputs\\survey-system\\.runtime\\pytest-run11'
+
+C:\Users\LOCAL_USER\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:722: FileNotFoundError
+============================== warnings summary ===============================
+..\..\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\run-11-final\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102      5    95%   59-61, 118-119
+app\auth_service.py         34      1    97%   18
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              166      9    95%   15, 47, 87-89, 94, 131, 150, 176
+app\errors.py                6      0   100%
+app\main.py                142      0   100%
+app\models.py               68      2    97%   65-66
+app\repositories.py         67      0   100%
+app\schema.py               35      1    97%   78
+app\security.py             17      0   100%
+app\stats_service.py        49      0   100%
+app\survey_service.py       82      3    96%   24, 49-50
+------------------------------------------------------
+TOTAL                      792     32    96%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\run-11-final\coverage.json
+=========================== short test summary info ===========================
+ERROR tests/test_history_baseline.py::test_tampered_fixture_rejected - FileNo...
+ERROR tests/test_launcher.py::test_mongo_process_ownership[43210] - FileNotFo...
+ERROR tests/test_launcher.py::test_mongo_process_ownership[98765] - FileNotFo...
+=================== 99 passed, 1 warning, 3 errors in 8.07s ===================

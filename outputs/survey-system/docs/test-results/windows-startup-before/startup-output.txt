@@ -1,0 +1,91 @@
+本地.env已生成。保留APP_SECRET以维持匿名去重身份，不要提交或公开此文件。
+Traceback (most recent call last):
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\verify_fresh_startup.py", line 87, in <module>
+    run_local.main()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\中文 空格\survey-system\run_local.py", line 35, in main
+    if client.admin.command('serverStatus').get('pid') != process.pid:
+       ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\_csot.py", line 126, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\database.py", line 946, in command
+    return self._client._retryable_read(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        inner, read_preference, session, command_name, None, False, is_run_command=True
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2116, in _retryable_read
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func,
+        ^^^^^
+    ...<9 lines>...
+        is_aggregate_write=is_aggregate_write,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\_csot.py", line 126, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2077, in _retry_internal
+    ).run()
+      ~~~^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2947, in run
+    res = self._read() if self._is_read else self._write()
+          ~~~~~~~~~~^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 3187, in _read
+    return self._func(self._session, self._server, conn, read_pref)  # type: ignore
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\database.py", line 934, in inner
+    return self._command(
+           ~~~~~~~~~~~~~^
+        conn,
+        ^^^^^
+    ...<7 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\database.py", line 773, in _command
+    return conn.command(
+           ~~~~~~~~~~~~^
+        self._name,
+        ^^^^^^^^^^^
+    ...<8 lines>...
+        client=self._client,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\helpers.py", line 50, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\pool.py", line 430, in command
+    self._raise_connection_failure(error)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\pool.py", line 576, in _raise_connection_failure
+    raise error
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\pool.py", line 405, in command
+    return run_command(
+        self,
+    ...<17 lines>...
+        write_concern=write_concern,
+    )
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\command_runner.py", line 440, in run_command
+    docs, _, _ = _run_command(
+                 ~~~~~~~~~~~~^
+        conn,
+        ^^^^^
+    ...<16 lines>...
+        set_conn_more_to_come=True,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\command_runner.py", line 205, in _run_command
+    docs = reply.unpack_response(codec_options=codec_options, user_fields=user_fields)
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\pymongo\message.py", line 1134, in unpack_response
+    return bson._decode_all_selective(self.payload_document, codec_options, user_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\bson\__init__.py", line 1300, in _decode_all_selective
+    return decode_all(data, codec_options)
+  File "C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\bson\__init__.py", line 1209, in decode_all
+    return _decode_all(data, codec_options)
+bson.errors.InvalidBSON: 'utf-8' codec can't decode byte 0xc1 in position 0: invalid start byte

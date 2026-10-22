@@ -1,0 +1,13 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "checks": [
+    "real TCP health endpoint",
+    "HTML served with UTF-8",
+    "all frontend static assets served",
+    "HTTP cookie login and CSRF",
+    "create publish fill submit statistics over TCP",
+    "OpenAPI export"
+  ],
+  "mongoVersion": "6.0.27"
+}
