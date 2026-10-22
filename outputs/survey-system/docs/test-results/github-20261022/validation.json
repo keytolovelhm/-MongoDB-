@@ -86,10 +86,19 @@
     "retest": "New isolated databases outside sandbox; both runners exited 0"
   },
   "publication": {
-    "status": "READY_AFTER_LOCAL_CHECKS",
-    "pushed": false,
+    "status": "PUBLISHED_AND_CLONE_VERIFIED",
+    "pushed": true,
+    "repository": "https://github.com/keytolovelhm/-MongoDB-",
+    "branch": "main",
+    "verifiedSourceCommit": "035007551d20d15b933b625c475808cd7f4fb4fb",
+    "remoteCloneVerified": true,
+    "clonedFilesByteIdentical": 119,
+    "verifiedHistoryCommits": 2,
     "publicTag": "phase1-public-v1.0.0",
-    "remoteCloneVerified": false
+    "originalHistoryOrTagsPushed": false,
+    "forcePushUsed": false,
+    "verificationMethod": "Fresh GitHub clone; every tracked file compared; all reachable objects scanned; README read through GitHub connector",
+    "connectorFallback": "Additional connector file reads failed with transport errors; full Git clone provided complete verification"
   },
   "localOriginals": "Original ZIP, four original tags, local history backups and evidence retained unchanged",
   "removed": [
