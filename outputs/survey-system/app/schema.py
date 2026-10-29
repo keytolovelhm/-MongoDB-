@@ -62,6 +62,10 @@ def ensure_schema(db):
             db.command('collMod', name, **options)
         else:
             db.create_collection(name, **options)
+    ensure_indexes(db)
+
+
+def ensure_indexes(db):
     db.users.create_index('usernameNormalized', unique=True, name='username_unique')
     db.surveys.create_index('shareSlug', unique=True, name='share_slug_unique')
     db.surveys.create_index([('ownerId', 1), ('updatedAt', -1), ('_id', -1)], name='owner_list')

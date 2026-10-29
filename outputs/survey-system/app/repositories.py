@@ -4,7 +4,7 @@ from bson import ObjectId
 from bson.decimal128 import Decimal128
 from pymongo import MongoClient, ReturnDocument
 from .errors import fail
-from .schema import ensure_schema
+from .runtime_schema import ensure_runtime_schema
 
 
 def utcnow():
@@ -87,7 +87,7 @@ class Store:
         self.client = MongoClient(settings.mongo_uri, tz_aware=True, serverSelectionTimeoutMS=3000, connectTimeoutMS=3000)
         self.db = self.client[settings.database]
         self.client.admin.command('ping')
-        ensure_schema(self.db)
+        ensure_runtime_schema(self.db)
         self.users, self.surveys = Users(self.db.users), Surveys(self.db.surveys)
         self.responses, self.sessions = Responses(self.db.responses), Repository(self.db.sessions)
 

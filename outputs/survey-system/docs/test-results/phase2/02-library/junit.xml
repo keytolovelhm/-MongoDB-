@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="37" time="9.783" timestamp="2026-10-23T10:30:15.554812+08:00" hostname="LOCAL_TEST_HOST"><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[SINGLE]" time="0.626" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[MULTI]" time="0.151" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[TEXT]" time="0.174" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[NUMBER]" time="0.188" /><testcase classname="tests.test_phase2" name="test_S2_03_source_server_owned_and_snapshot_body_protected" time="0.160" /><testcase classname="tests.test_phase2" name="test_S2_04_05_versions_branch_restore_and_idempotency" time="0.165"><failure message="AssertionError: assert {'id': '6adac...922742c', ...} == {'id': '6adac...922742c', ...}&#10;  &#10;  Omitting 14 identical items, use -vv to show&#10;  Differing items:&#10;  {'createdAt': '2026-10-23T02:30:17.355000Z'} != {'createdAt': '2026-10-23T02:30:17.355052Z'}&#10;  &#10;  Full diff:&#10;    {...&#10;  &#10;  ...Full output truncated (41 lines hidden), use '-vv' to show">actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B212223CE0&gt;
+env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x000001B211FF4F50&gt;, client=&lt;starlette.testclient.TestClient obj...a0b1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+
+    def test_S2_04_05_versions_branch_restore_and_idempotency(actor, env):
+        owner = actor(); first = library(owner); v1 = first['version']; root = first['item']
+        bson_before = BSON.encode(env.store.db.question_versions.find_one({'_id': ObjectId(v1['id'])}))
+        second = saved_version(owner, root, v1)
+        branch = saved_version(owner, second['item'], v1)
+        assert branch['version']['parentVersionId'] == v1['id']
+        data = {'revision': branch['item']['revision'], 'versionId': v1['id'], 'operationKey': uuid4().hex}
+        restored = owner.call('POST', '/library/questions/'+root['id']+'/restore', data, 201)
+        assert restored['version']['parentVersionId'] == branch['version']['id']
+        assert restored['version']['restoredFromVersionId'] == v1['id']
+&gt;       assert owner.call('POST', '/library/questions/'+root['id']+'/restore', data, 201)['version'] == restored['version']
+E       AssertionError: assert {'id': '6adac...922742c', ...} == {'id': '6adac...922742c', ...}
+E         
+E         Omitting 14 identical items, use -vv to show
+E         Differing items:
+E         {'createdAt': '2026-10-23T02:30:17.355000Z'} != {'createdAt': '2026-10-23T02:30:17.355052Z'}
+E         
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (41 lines hidden), use '-vv' to show
+
+tests\test_phase2.py:87: AssertionError</failure></testcase><testcase classname="tests.test_phase2" name="test_S2_06_07_share_fork_revoke_and_existing_draft" time="0.394" /><testcase classname="tests.test_phase2" name="test_S2_09_replace_keeps_rules_and_rejects_invalid_options" time="0.152" /><testcase classname="tests.test_phase2" name="test_S2_11_12_banks_pinned_upgrade_permission_and_remove" time="0.388" /><testcase classname="tests.test_phase2" name="test_S2_13_numeric_aggregate_author_auto_and_privacy" time="1.094" /><testcase classname="tests.test_phase2" name="test_S2_18_runtime_upgrade_preserves_original_BSON_and_stats" time="0.388" /><testcase classname="tests.test_phase2" name="test_S2_19_27_legacy_bind_pause_correct_preserves_BSON" time="0.216"><failure message="AssertionError: assert {'head': {'id...227470', ...}} == {'head': {'id...227470', ...}}&#10;  &#10;  Omitting 1 identical items, use -vv to show&#10;  Differing items:&#10;  {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}} != {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}}&#10;  &#10;  Full diff:&#10;    {...&#10;  &#10;  ...Full output truncated (37 lines hidden), use '-vv' to show">actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x000001B2122784A0&gt;
+env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x000001B211FF4F50&gt;, client=&lt;starlette.testclient.TestClient obj...a0b1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+
+    def test_S2_19_27_legacy_bind_pause_correct_preserves_BSON(actor, env):
+        a, b = actor(), actor('borrower')
+        q = question(typ='NUMBER', constraints={'minValue': '18.0', 'maxValue': '120'})
+        survey = published(b, [q])
+        first = b.call('POST', '/surveys/'+survey['id']+'/questions/q1/save-to-library', {'name': '旧年龄'}, 201)
+        v = first['version']
+        before = BSON.encode(env.store.db.surveys.find_one({'_id': ObjectId(survey['id'])}))
+        link = {'versionId': v['id'], 'operationKey': uuid4().hex, 'expectedLinkRevision': 0, 'reusePolicyVersion': 1, 'acknowledged': True}
+        path = '/surveys/'+survey['id']+'/questions/q1/library-link'
+        a.call('PUT', path, link, 404)
+        first_link = b.call('PUT', path, link)
+&gt;       assert b.call('PUT', path, link) == first_link
+E       AssertionError: assert {'head': {'id...227470', ...}} == {'head': {'id...227470', ...}}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}} != {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}}
+E         
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (37 lines hidden), use '-vv' to show
+
+tests\test_phase2.py:202: AssertionError</failure></testcase><testcase classname="tests.test_phase2" name="test_S2_schema_rejects_unknown_fields_and_unique_indexes" time="0.093" /><testcase classname="tests.test_api" name="test_T01_auth_password_duplicate_logout_and_csrf" time="0.202" /><testcase classname="tests.test_api" name="test_T02_owner_isolation_and_T06_sharing" time="0.402" /><testcase classname="tests.test_api" name="test_T03_T04_editor_ids_revision_freeze" time="0.156" /><testcase classname="tests.test_api" name="test_T05_deadline_close_and_closed_receipt" time="0.174" /><testcase classname="tests.test_api" name="test_expired_draft_cannot_save_or_submit" time="0.174" /><testcase classname="tests.test_api" name="test_T07_T11_value_validation_is_server_side" time="0.329" /><testcase classname="tests.test_api" name="test_T12_T17_route_priority_recompute_skip_and_hidden_rejection" time="0.212" /><testcase classname="tests.test_api" name="test_T18_anonymous_hidden_and_repeat_mode_enforced" time="0.284" /><testcase classname="tests.test_api" name="test_T19_T20_T21_restore_optimistic_lock_and_idempotency" time="0.236" /><testcase classname="tests.test_api" name="test_T24_T26_statistics_known_values_and_pagination" time="0.529" /><testcase classname="tests.test_api" name="test_T22_fifty_people_concurrent_real_mongo" time="0.441" /><testcase classname="tests.test_api" name="test_T23_single_person_two_concurrent_sessions" time="0.146" /><testcase classname="tests.test_api" name="test_T27_D09B_admitted_before_close_can_commit_after_close" time="0.227" /><testcase classname="tests.test_api" name="test_T28_schema_reinitialization_preserves_stage1_baseline" time="0.182" /><testcase classname="tests.test_api" name="test_T30_real_database_schema_indexes_expired_session" time="0.075" /><testcase classname="tests.test_api" name="test_health_openapi_request_limit_and_db_error" time="0.213" /><testcase classname="tests.test_api" name="test_closed_definition_supports_readonly_saved_answers" time="0.145" /><testcase classname="tests.test_history_baseline" name="test_deterministic_fixture_and_valid_paths" time="0.005" /><testcase classname="tests.test_history_baseline" name="test_tampered_fixture_rejected" time="0.027" /><testcase classname="tests.test_history_baseline" name="test_restore_requires_dedicated_database[questionnaire_stage1]" time="0.001" /><testcase classname="tests.test_history_baseline" name="test_restore_requires_dedicated_database[admin]" time="0.001" /><testcase classname="tests.test_history_baseline" name="test_restore_requires_dedicated_database[survey_history_]" time="0.001" /><testcase classname="tests.test_history_baseline" name="test_restore_requires_dedicated_database[survey_history_x.y]" time="0.001" /><testcase classname="tests.test_history_baseline" name="test_restore_and_readonly_verify" time="0.187" /></testsuite></testsuites>

@@ -1,0 +1,144 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 37 items
+
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[SINGLE] PASSED [  2%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[MULTI] PASSED [  5%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[TEXT] PASSED [  8%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[NUMBER] PASSED [ 10%]
+tests/test_phase2.py::test_S2_03_source_server_owned_and_snapshot_body_protected PASSED [ 13%]
+tests/test_phase2.py::test_S2_04_05_versions_branch_restore_and_idempotency FAILED [ 16%]
+tests/test_phase2.py::test_S2_06_07_share_fork_revoke_and_existing_draft PASSED [ 18%]
+tests/test_phase2.py::test_S2_09_replace_keeps_rules_and_rejects_invalid_options PASSED [ 21%]
+tests/test_phase2.py::test_S2_11_12_banks_pinned_upgrade_permission_and_remove PASSED [ 24%]
+tests/test_phase2.py::test_S2_13_numeric_aggregate_author_auto_and_privacy PASSED [ 27%]
+tests/test_phase2.py::test_S2_18_runtime_upgrade_preserves_original_BSON_and_stats PASSED [ 29%]
+tests/test_phase2.py::test_S2_19_27_legacy_bind_pause_correct_preserves_BSON FAILED [ 32%]
+tests/test_phase2.py::test_S2_schema_rejects_unknown_fields_and_unique_indexes PASSED [ 35%]
+tests/test_api.py::test_T01_auth_password_duplicate_logout_and_csrf PASSED [ 37%]
+tests/test_api.py::test_T02_owner_isolation_and_T06_sharing PASSED       [ 40%]
+tests/test_api.py::test_T03_T04_editor_ids_revision_freeze PASSED        [ 43%]
+tests/test_api.py::test_T05_deadline_close_and_closed_receipt PASSED     [ 45%]
+tests/test_api.py::test_expired_draft_cannot_save_or_submit PASSED       [ 48%]
+tests/test_api.py::test_T07_T11_value_validation_is_server_side PASSED   [ 51%]
+tests/test_api.py::test_T12_T17_route_priority_recompute_skip_and_hidden_rejection PASSED [ 54%]
+tests/test_api.py::test_T18_anonymous_hidden_and_repeat_mode_enforced PASSED [ 56%]
+tests/test_api.py::test_T19_T20_T21_restore_optimistic_lock_and_idempotency PASSED [ 59%]
+tests/test_api.py::test_T24_T26_statistics_known_values_and_pagination PASSED [ 62%]
+tests/test_api.py::test_T22_fifty_people_concurrent_real_mongo PASSED    [ 64%]
+tests/test_api.py::test_T23_single_person_two_concurrent_sessions PASSED [ 67%]
+tests/test_api.py::test_T27_D09B_admitted_before_close_can_commit_after_close PASSED [ 70%]
+tests/test_api.py::test_T28_schema_reinitialization_preserves_stage1_baseline PASSED [ 72%]
+tests/test_api.py::test_T30_real_database_schema_indexes_expired_session PASSED [ 75%]
+tests/test_api.py::test_health_openapi_request_limit_and_db_error PASSED [ 78%]
+tests/test_api.py::test_closed_definition_supports_readonly_saved_answers PASSED [ 81%]
+tests/test_history_baseline.py::test_deterministic_fixture_and_valid_paths PASSED [ 83%]
+tests/test_history_baseline.py::test_tampered_fixture_rejected PASSED    [ 86%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[questionnaire_stage1] PASSED [ 89%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[admin] PASSED [ 91%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[survey_history_] PASSED [ 94%]
+tests/test_history_baseline.py::test_restore_requires_dedicated_database[survey_history_x.y] PASSED [ 97%]
+tests/test_history_baseline.py::test_restore_and_readonly_verify PASSED  [100%]
+
+================================== FAILURES ===================================
+____________ test_S2_04_05_versions_branch_restore_and_idempotency ____________
+
+actor = <function actor.<locals>.<lambda> at 0x000001B212223CE0>
+env = namespace(app=<fastapi.applications.FastAPI object at 0x000001B211FF4F50>, client=<starlette.testclient.TestClient obj...a0b1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+
+    def test_S2_04_05_versions_branch_restore_and_idempotency(actor, env):
+        owner = actor(); first = library(owner); v1 = first['version']; root = first['item']
+        bson_before = BSON.encode(env.store.db.question_versions.find_one({'_id': ObjectId(v1['id'])}))
+        second = saved_version(owner, root, v1)
+        branch = saved_version(owner, second['item'], v1)
+        assert branch['version']['parentVersionId'] == v1['id']
+        data = {'revision': branch['item']['revision'], 'versionId': v1['id'], 'operationKey': uuid4().hex}
+        restored = owner.call('POST', '/library/questions/'+root['id']+'/restore', data, 201)
+        assert restored['version']['parentVersionId'] == branch['version']['id']
+        assert restored['version']['restoredFromVersionId'] == v1['id']
+>       assert owner.call('POST', '/library/questions/'+root['id']+'/restore', data, 201)['version'] == restored['version']
+E       AssertionError: assert {'id': '6adac...922742c', ...} == {'id': '6adac...922742c', ...}
+E         
+E         Omitting 14 identical items, use -vv to show
+E         Differing items:
+E         {'createdAt': '2026-10-23T02:30:17.355000Z'} != {'createdAt': '2026-10-23T02:30:17.355052Z'}
+E         
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (41 lines hidden), use '-vv' to show
+
+tests\test_phase2.py:87: AssertionError
+___________ test_S2_19_27_legacy_bind_pause_correct_preserves_BSON ____________
+
+actor = <function actor.<locals>.<lambda> at 0x000001B2122784A0>
+env = namespace(app=<fastapi.applications.FastAPI object at 0x000001B211FF4F50>, client=<starlette.testclient.TestClient obj...a0b1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+
+    def test_S2_19_27_legacy_bind_pause_correct_preserves_BSON(actor, env):
+        a, b = actor(), actor('borrower')
+        q = question(typ='NUMBER', constraints={'minValue': '18.0', 'maxValue': '120'})
+        survey = published(b, [q])
+        first = b.call('POST', '/surveys/'+survey['id']+'/questions/q1/save-to-library', {'name': '旧年龄'}, 201)
+        v = first['version']
+        before = BSON.encode(env.store.db.surveys.find_one({'_id': ObjectId(survey['id'])}))
+        link = {'versionId': v['id'], 'operationKey': uuid4().hex, 'expectedLinkRevision': 0, 'reusePolicyVersion': 1, 'acknowledged': True}
+        path = '/surveys/'+survey['id']+'/questions/q1/library-link'
+        a.call('PUT', path, link, 404)
+        first_link = b.call('PUT', path, link)
+>       assert b.call('PUT', path, link) == first_link
+E       AssertionError: assert {'head': {'id...227470', ...}} == {'head': {'id...227470', ...}}
+E         
+E         Omitting 1 identical items, use -vv to show
+E         Differing items:
+E         {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}} != {'current': {'id': '6adac6bc60e7f45989227474', 'recordType': 'REVISION', 'headId': '6adac6bc60e7f45989227473', 'surveyId': '6adac6bc60e7f45989227470', ...}}
+E         
+E         Full diff:
+E           {...
+E         
+E         ...Full output truncated (37 lines hidden), use '-vv' to show
+
+tests\test_phase2.py:202: AssertionError
+============================== warnings summary ===============================
+..\..\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\02-library\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102      5    95%   59-61, 118-119
+app\auth_service.py         34      1    97%   18
+app\bank_service.py         60      7    88%   25-26, 30-34, 70
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              168     25    85%   15, 19-20, 32, 38, 42, 45, 47, 53, 56, 58, 61, 66, 70, 74, 78, 87-89, 94, 103, 122, 135, 154, 180
+app\errors.py                6      0   100%
+app\legacy_service.py       68     23    66%   16, 23-26, 29-31, 43, 50-51, 55, 57-59, 61, 66, 75-78, 82-84
+app\library_api.py         111     16    86%   22, 27, 36, 44, 53, 74, 96-97, 106, 114-115, 119, 140, 149-150, 155
+app\library_models.py       55      0   100%
+app\library_service.py     213     33    85%   59, 64, 72, 111, 131-132, 137-144, 148, 151-153, 157-161, 203-206, 222-227, 241
+app\library_stats.py        78      4    95%   52, 75-76, 90
+app\main.py                155      0   100%
+app\models.py               68      2    97%   65-66
+app\repositories.py         67      0   100%
+app\runtime_schema.py       37      0   100%
+app\schema.py               37      2    95%   62, 82
+app\security.py             17      0   100%
+app\stats_service.py        49      0   100%
+app\survey_service.py       92      3    97%   24, 49-50
+app\usage_service.py        56     14    75%   29-43
+------------------------------------------------------
+TOTAL                     1497    146    90%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\02-library\coverage.json
+=========================== short test summary info ===========================
+FAILED tests/test_phase2.py::test_S2_04_05_versions_branch_restore_and_idempotency
+FAILED tests/test_phase2.py::test_S2_19_27_legacy_bind_pause_correct_preserves_BSON
+=================== 2 failed, 35 passed, 1 warning in 9.80s ===================

@@ -19,6 +19,12 @@ from .survey_service import SurveyService
 from .attempt_service import AttemptService
 from .stats_service import StatsService
 from .security import csrf_token
+from .library_service import LibraryService
+from .bank_service import BankService
+from .legacy_service import LegacyService
+from .usage_service import UsageService
+from .library_stats import LibraryStats
+from .library_api import install_routes
 
 cookie = APIKeyCookie(name='survey_session', auto_error=False)
 STATIC = Path(__file__).parent / 'static'
@@ -45,11 +51,17 @@ def create_app(settings: Settings | None = None):
         app.state.settings, app.state.store = cfg, store
         app.state.services = SimpleNamespace(auth=AuthService(store, cfg), surveys=SurveyService(store),
                                               attempts=AttemptService(store, cfg), stats=StatsService(store))
+        s = app.state.services
+        s.library = LibraryService(store)
+        s.banks = BankService(store, s.library)
+        s.legacy = LegacyService(store, s.library)
+        s.usage = UsageService(store, s.library, cfg)
+        s.cross_stats = LibraryStats(store, s.library, s.usage)
         try: yield
         finally: store.close()
 
-    app = FastAPI(title='MongoDB 问卷系统', version='1.0.0', lifespan=lifespan,
-                  description='阶段一。登录后填写；匿名仅对创建者隐藏身份。写接口须带会话Cookie及X-CSRF-Token。D09-B按服务端受理检查时刻判定。')
+    app = FastAPI(title='MongoDB 问卷系统', version='2.0.0', lifespan=lifespan,
+                  description='题目版本、共享、题库及跨卷汇总；兼容阶段一。写接口须带Cookie和X-CSRF-Token；D09-B按受理检查时刻判定。')
 
     @app.exception_handler(AppError)
     async def business_error(request, exc):
@@ -86,7 +98,7 @@ def create_app(settings: Settings | None = None):
     @app.get('/api/health', tags=['system'])
     def health(request: Request):
         request.app.state.store.client.admin.command('ping')
-        return {'status': 'ok', 'version': '1.0.0', 'schemaVersion': 1}
+        return {'status': 'ok', 'version': '2.0.0', 'surveySchemaVersions': [1, 2]}
 
     @app.post('/api/auth/register', status_code=201, tags=['auth'])
     def register(data: Credentials, request: Request): return services(request).auth.register(data)
@@ -172,6 +184,7 @@ def create_app(settings: Settings | None = None):
     def answers(survey_id: str, question_id: str, request: Request, skip: int = Query(0, ge=0, le=1000000), limit: int = Query(20, ge=1, le=100), user=Depends(current_user)):
         return services(request).stats.answers(user, survey_id, question_id, skip, limit)
 
+    install_routes(app, current_user, write_user, services)
     app.mount('/static', StaticFiles(directory=STATIC, check_dir=False), name='static')
 
     @app.get('/', include_in_schema=False)

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-29",
+  "performedBy": "student",
+  "source": "Windows recent screenshots located following the student instruction",
+  "imageProcessing": "none; byte-identical copies of selected original screenshots",
+  "files": [
+    {
+      "file": "M2E01-versions.png",
+      "originalFilename": "屏幕截图 2026-10-29 214600.png",
+      "sha256": "c1bb52c0c32b89fbcaefcff21e06814e9d6ca99f9f47e0c39271fbed257eecb0",
+      "observed": "v1 CREATE、v2 EDIT、v3 RESTORE及恢复来源"
+    },
+    {
+      "file": "M2E02-survey-a-v1.png",
+      "originalFilename": "屏幕截图 2026-10-29 220952.png",
+      "sha256": "2a28685eec62a19238a8d8d2a2b05cb7c7623ad7b08c00dd6f9aaa14691a7736",
+      "observed": "发布问卷A保留v1题干及Python/C++选项"
+    },
+    {
+      "file": "M2E03-survey-b-v2.png",
+      "originalFilename": "屏幕截图 2026-10-29 221425.png",
+      "sha256": "b477dd3a68f66b8caf162fc24c19bbe8a4449b04f0fd1110b6a2f929a2364200",
+      "observed": "发布问卷B保留v2题干及Java新增选项"
+    },
+    {
+      "file": "M2E04-submit-java.png",
+      "originalFilename": "屏幕截图 2026-10-29 221546.png",
+      "sha256": "31f7acfdf711e45e8655f0ceb165bc902ab2237fa083949ae7bbeed822f0c448",
+      "observed": "问卷B提交成功回执，答案Java"
+    },
+    {
+      "file": "M2E05-java-statistics.png",
+      "originalFilename": "屏幕截图 2026-10-29 221929.png",
+      "sha256": "4373ecd9cd713dafc2c8fa17119251f93b32e7f4705defb1421df2d975fbe277",
+      "observed": "问卷B有效答卷1、Java计数1"
+    },
+    {
+      "file": "M2E06-cross-statistics.png",
+      "originalFilename": "屏幕截图 2026-10-29 212850.png",
+      "sha256": "2bc71cc9b55a81c459d274ba2559316461d7a5821915747bb8e1c2077a246f7b",
+      "observed": "自有2、他人5、合并7，均值分别15、22、20"
+    },
+    {
+      "file": "M2E07-insufficient-sample.png",
+      "originalFilename": "屏幕截图 2026-10-29 213027.png",
+      "sha256": "be935902f2fa148c58624d238b8cf2d5e59a44d842d63ce1d51e0ce522c892f3",
+      "observed": "样本不足时他人和合并隐藏"
+    },
+    {
+      "file": "M2E08-rare-cell.png",
+      "originalFilename": "屏幕截图 2026-10-29 213203.png",
+      "sha256": "a3910780d818f8ed631735ccc5e70f497b79660f8c0f3ec4b02f98c60b716c26",
+      "observed": "稀有分组时他人和合并隐藏"
+    },
+    {
+      "file": "M2E09-share-active.png",
+      "originalFilename": "屏幕截图 2026-10-29 222206.png",
+      "sha256": "252fef294dedf47e6e79801df2ded157e9a8e2783acf76db1a2f54b65b71f7c5",
+      "observed": "v2向demo_borrower共享有效"
+    },
+    {
+      "file": "M2E10-received-before.png",
+      "originalFilename": "屏幕截图 2026-10-29 222342.png",
+      "sha256": "b25fd3d33c3d5b258ea7656665d2bdd053981f2956aee7a5edefa0d0888382e6",
+      "observed": "接收列表显示人工验收题目v2"
+    },
+    {
+      "file": "M2E11-share-revoked.png",
+      "originalFilename": "屏幕截图 2026-10-29 222929.png",
+      "sha256": "e8af86bd29905d6fc6bf1e900c23d9de6953e8b11b048ae3849114729f575a0c",
+      "observed": "v2向demo_borrower共享已撤销"
+    },
+    {
+      "file": "M2E12-snapshot-after.png",
+      "originalFilename": "屏幕截图 2026-10-29 223018.png",
+      "sha256": "7189916e4d653e24962a735c3b24ec980fc1872f8534a17bc97148568aa33fb8",
+      "observed": "撤销后问卷C仍保留v2只读快照"
+    },
+    {
+      "file": "M2E13-received-after.png",
+      "originalFilename": "屏幕截图 2026-10-29 223109.png",
+      "sha256": "e6f6edcde58b0d43ba5843ed44e3d979cf02a8aec7254472522966eb4a976e21",
+      "observed": "撤销后接收列表不再显示该人工验收题目"
+    }
+  ]
+}

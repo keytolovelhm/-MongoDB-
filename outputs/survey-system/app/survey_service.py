@@ -18,7 +18,7 @@ def assert_open(survey, now=None):
 
 
 def version_check(survey, response=None):
-    if survey['schemaVersion'] != 1 or survey['contentVersion'] != 1 or survey['ruleLanguageVersion'] != 1:
+    if survey['schemaVersion'] not in (1, 2) or survey['contentVersion'] != 1 or survey['ruleLanguageVersion'] != 1:
         fail('unsupported_version', '当前程序不支持该问卷版本', 409)
     if response and (response['schemaVersion'] != 1 or response['contentVersion'] != survey['contentVersion'] or response['identityKeyVersion'] != 1):
         fail('unsupported_version', '答卷版本与问卷定义不兼容', 409)
@@ -60,6 +60,15 @@ class SurveyService:
         if survey['status'] != 'DRAFT': fail('definition_frozen', '发布后题目、规则与参与策略已冻结', 409)
         definition = data.model_dump(exclude={'revision'})
         definition['questions'] = validate_definition(definition)
+        # Client DTOs never accept sourceRef. Preserve only trusted references on unchanged bodies.
+        from .library_service import content_hash
+        previous = {q['questionId']: q for q in survey['questions']}
+        for question in definition['questions']:
+            ref = previous.get(question['questionId'], {}).get('sourceRef')
+            if ref:
+                if content_hash(question) != ref['contentHash']:
+                    fail('snapshot_frozen', '库题正文不能直接改写；请创建新版本或另存后替换', 409, field=question['questionId'])
+                question['sourceRef'] = ref
         check_size(dict(survey, **definition))
         changed = self.store.surveys.change({'_id': survey['_id'], 'ownerId': user['_id'], 'revision': data.revision, 'status': 'DRAFT'},
                                            dict(definition, updatedAt=utcnow()))
@@ -103,6 +112,8 @@ class SurveyService:
         if survey['status'] == 'DRAFT': fail('not_found', '问卷不存在或未发布', 404)
         result = self.public(survey)
         result.pop('ownerId', None)
+        for q in result['questions']:
+            q.pop('sourceRef', None)
         # Authenticated respondents can still interpret their saved answers after closure.
         # Write endpoints independently enforce assert_open; no editing permission is granted.
         return result

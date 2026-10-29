@@ -1,0 +1,17 @@
+{
+  "passed": 10,
+  "failed": 1,
+  "checks": [
+    "网页创建数字库题与固定分组",
+    "网页工作稿保存为新版本",
+    "网页恢复历史内容生成新版本",
+    "网页指定账号共享确切版本",
+    "网页未确认告知时拒绝导入",
+    "网页导入后库题正文只读，仍有本卷跳转控件",
+    "含库题草稿可保存并发布",
+    "网页题库添加固定版本",
+    "网页移除题库成员",
+    "网页从旧卷保存库题，不自动绑定历史回答"
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: button 选择具体版本\n    at click (file:///C:/Users/LOCAL_USER/Documents/ChatGPT/%E5%BD%93%E4%BB%A3%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/outputs/survey-system/tests/frontend/phase2.mjs:34:124)\n    at file:///C:/Users/LOCAL_USER/Documents/ChatGPT/%E5%BD%93%E4%BB%A3%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/outputs/survey-system/tests/frontend/phase2.mjs:70:61"
+}

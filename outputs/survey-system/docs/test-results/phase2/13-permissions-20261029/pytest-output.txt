@@ -1,0 +1,49 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 43 items / 40 deselected / 3 selected
+
+tests/test_phase2.py::test_S2_stats_rejects_non_author_without_requested_adoption[no_grant] PASSED [ 33%]
+tests/test_phase2.py::test_S2_stats_rejects_non_author_without_requested_adoption[use_without_adoption] PASSED [ 66%]
+tests/test_phase2.py::test_S2_stats_rejects_non_author_without_requested_adoption[other_version_adopted] PASSED [100%]
+
+============================== warnings summary ===============================
+..\..\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\13-permissions-20261029\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102     17    83%   44-45, 48, 50, 59-61, 65-68, 71-72, 115-116, 118-119
+app\auth_service.py         34      5    85%   18, 22, 28, 37, 43
+app\bank_service.py         60     45    25%   13-15, 18-22, 25-26, 30-34, 37-47, 50-58, 61-72, 75-78
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              168     87    48%   11, 15, 19-20, 25, 28, 32, 38, 42, 44-45, 47, 53, 56, 58, 61, 66, 68-70, 73-104, 113-115, 118-119, 121-129, 131-139, 143, 145, 147, 152-162, 168, 180
+app\errors.py                6      0   100%
+app\legacy_service.py       68     56    18%   14-20, 23-26, 29-31, 35-85
+app\library_api.py         113     29    74%   22, 27, 36, 40, 44, 53, 61, 70, 74, 83, 89, 98-99, 103, 108, 112, 116-117, 121, 126, 130, 134, 138, 142, 146-147, 151-152, 157
+app\library_models.py       55      0   100%
+app\library_service.py     220     57    74%   58-60, 64, 72, 78, 80, 107, 113, 133-134, 139-146, 149-150, 153-155, 159-163, 186-187, 206-209, 221-223, 227-232, 246-250, 260-262, 279-287
+app\library_stats.py        77      3    96%   52, 75-76
+app\main.py                155     24    85%   72-73, 77-78, 85, 87, 95, 100-101, 115, 119-121, 125, 133, 137, 145, 149, 153, 157, 165, 177, 181, 185
+app\models.py               68      5    93%   63-66, 68
+app\repositories.py         67      5    93%   16, 74-76, 81
+app\runtime_schema.py       37      1    97%   66
+app\schema.py               37      8    78%   58-65, 82
+app\security.py             17      1    94%   16
+app\stats_service.py        49     36    27%   14-31, 34-38, 44-45, 48-52, 55-68
+app\survey_service.py       92     44    52%   17, 22, 24, 49-50, 55-56, 59-76, 91-98, 101-107, 110-119
+app\usage_service.py        57     26    54%   29-45, 60-72
+------------------------------------------------------
+TOTAL                     1506    460    69%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\13-permissions-20261029\coverage.json
+================= 3 passed, 40 deselected, 1 warning in 3.28s =================

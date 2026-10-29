@@ -33,284 +33,598 @@
     }
   },
   "surveys": {
-    "bsonType": "object",
-    "required": [
-      "ownerId",
-      "shareSlug",
-      "title",
-      "description",
-      "anonymousEnabled",
-      "allowMultipleSubmissions",
-      "status",
-      "closesAt",
-      "questions",
-      "contentVersion",
-      "ruleLanguageVersion",
-      "revision",
-      "createdAt",
-      "updatedAt",
-      "publishedAt",
-      "closedAt",
-      "schemaVersion"
-    ],
-    "additionalProperties": false,
-    "properties": {
-      "_id": {
-        "bsonType": "objectId"
-      },
-      "ownerId": {
-        "bsonType": "objectId"
-      },
-      "shareSlug": {
-        "bsonType": "string"
-      },
-      "title": {
-        "bsonType": "string"
-      },
-      "description": {
-        "bsonType": "string"
-      },
-      "anonymousEnabled": {
-        "bsonType": "bool"
-      },
-      "allowMultipleSubmissions": {
-        "bsonType": "bool"
-      },
-      "status": {
-        "enum": [
-          "DRAFT",
-          "PUBLISHED",
-          "CLOSED"
-        ]
-      },
-      "closesAt": {
-        "bsonType": [
-          "date",
-          "null"
-        ]
-      },
-      "questions": {
-        "bsonType": "array",
-        "maxItems": 200,
-        "items": {
-          "bsonType": "object",
-          "required": [
-            "questionId",
-            "order",
-            "title",
-            "type",
-            "required",
-            "options",
-            "constraints",
-            "rules"
-          ],
-          "additionalProperties": false,
-          "properties": {
-            "questionId": {
-              "bsonType": "string"
-            },
-            "order": {
-              "bsonType": [
-                "int",
-                "long"
-              ],
-              "minimum": 0
-            },
-            "title": {
-              "bsonType": "string"
-            },
-            "type": {
-              "enum": [
-                "SINGLE",
-                "MULTI",
-                "TEXT",
-                "NUMBER"
-              ]
-            },
-            "required": {
-              "bsonType": "bool"
-            },
-            "options": {
-              "bsonType": "array",
-              "maxItems": 100,
-              "items": {
-                "bsonType": "object",
-                "required": [
-                  "optionId",
-                  "label"
-                ],
-                "additionalProperties": false,
-                "properties": {
-                  "optionId": {
-                    "bsonType": "string"
-                  },
-                  "label": {
-                    "bsonType": "string"
-                  }
-                }
-              }
-            },
-            "constraints": {
+    "oneOf": [
+      {
+        "bsonType": "object",
+        "required": [
+          "ownerId",
+          "shareSlug",
+          "title",
+          "description",
+          "anonymousEnabled",
+          "allowMultipleSubmissions",
+          "status",
+          "closesAt",
+          "questions",
+          "contentVersion",
+          "ruleLanguageVersion",
+          "revision",
+          "createdAt",
+          "updatedAt",
+          "publishedAt",
+          "closedAt",
+          "schemaVersion"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "ownerId": {
+            "bsonType": "objectId"
+          },
+          "shareSlug": {
+            "bsonType": "string"
+          },
+          "title": {
+            "bsonType": "string"
+          },
+          "description": {
+            "bsonType": "string"
+          },
+          "anonymousEnabled": {
+            "bsonType": "bool"
+          },
+          "allowMultipleSubmissions": {
+            "bsonType": "bool"
+          },
+          "status": {
+            "enum": [
+              "DRAFT",
+              "PUBLISHED",
+              "CLOSED"
+            ]
+          },
+          "closesAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "questions": {
+            "bsonType": "array",
+            "maxItems": 200,
+            "items": {
               "bsonType": "object",
               "required": [
-                "integerOnly"
+                "questionId",
+                "order",
+                "title",
+                "type",
+                "required",
+                "options",
+                "constraints",
+                "rules"
               ],
               "additionalProperties": false,
               "properties": {
-                "minSelections": {
+                "questionId": {
+                  "bsonType": "string"
+                },
+                "order": {
                   "bsonType": [
                     "int",
-                    "null"
+                    "long"
                   ],
                   "minimum": 0
                 },
-                "maxSelections": {
-                  "bsonType": [
-                    "int",
-                    "null"
-                  ],
-                  "minimum": 0
+                "title": {
+                  "bsonType": "string"
                 },
-                "minLength": {
-                  "bsonType": [
-                    "int",
-                    "null"
-                  ],
-                  "minimum": 0
-                },
-                "maxLength": {
-                  "bsonType": [
-                    "int",
-                    "null"
-                  ],
-                  "minimum": 0
-                },
-                "minValue": {
-                  "bsonType": [
-                    "string",
-                    "null"
+                "type": {
+                  "enum": [
+                    "SINGLE",
+                    "MULTI",
+                    "TEXT",
+                    "NUMBER"
                   ]
                 },
-                "maxValue": {
-                  "bsonType": [
-                    "string",
-                    "null"
-                  ]
-                },
-                "integerOnly": {
+                "required": {
                   "bsonType": "bool"
-                }
-              }
-            },
-            "rules": {
-              "bsonType": "array",
-              "maxItems": 50,
-              "items": {
-                "bsonType": "object",
-                "required": [
-                  "ruleId",
-                  "priority",
-                  "condition",
-                  "target"
-                ],
-                "additionalProperties": false,
-                "properties": {
-                  "ruleId": {
-                    "bsonType": "string"
-                  },
-                  "priority": {
-                    "bsonType": [
-                      "int",
-                      "long"
-                    ],
-                    "minimum": 0
-                  },
-                  "condition": {
+                },
+                "options": {
+                  "bsonType": "array",
+                  "maxItems": 100,
+                  "items": {
                     "bsonType": "object",
                     "required": [
-                      "op",
-                      "value"
+                      "optionId",
+                      "label"
                     ],
                     "additionalProperties": false,
                     "properties": {
-                      "op": {
-                        "enum": [
-                          "eq",
-                          "contains_any",
-                          "contains_all",
-                          "set_equals",
-                          "gt",
-                          "gte",
-                          "lt",
-                          "lte",
-                          "between"
-                        ]
+                      "optionId": {
+                        "bsonType": "string"
                       },
-                      "value": {
-                        "oneOf": [
-                          {
-                            "bsonType": "string"
-                          },
-                          {
-                            "bsonType": "array",
-                            "items": {
-                              "bsonType": "string"
-                            }
-                          }
-                        ]
+                      "label": {
+                        "bsonType": "string"
                       }
                     }
-                  },
-                  "target": {
-                    "bsonType": "string"
+                  }
+                },
+                "constraints": {
+                  "bsonType": "object",
+                  "required": [
+                    "integerOnly"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "minSelections": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "maxSelections": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "minLength": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "maxLength": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "minValue": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "maxValue": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "integerOnly": {
+                      "bsonType": "bool"
+                    }
+                  }
+                },
+                "rules": {
+                  "bsonType": "array",
+                  "maxItems": 50,
+                  "items": {
+                    "bsonType": "object",
+                    "required": [
+                      "ruleId",
+                      "priority",
+                      "condition",
+                      "target"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "ruleId": {
+                        "bsonType": "string"
+                      },
+                      "priority": {
+                        "bsonType": [
+                          "int",
+                          "long"
+                        ],
+                        "minimum": 0
+                      },
+                      "condition": {
+                        "bsonType": "object",
+                        "required": [
+                          "op",
+                          "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "op": {
+                            "enum": [
+                              "eq",
+                              "contains_any",
+                              "contains_all",
+                              "set_equals",
+                              "gt",
+                              "gte",
+                              "lt",
+                              "lte",
+                              "between"
+                            ]
+                          },
+                          "value": {
+                            "oneOf": [
+                              {
+                                "bsonType": "string"
+                              },
+                              {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "string"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "target": {
+                        "bsonType": "string"
+                      }
+                    }
                   }
                 }
               }
             }
+          },
+          "contentVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "ruleLanguageVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "revision": {
+            "bsonType": [
+              "int",
+              "long"
+            ],
+            "minimum": 0
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "updatedAt": {
+            "bsonType": "date"
+          },
+          "publishedAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "closedAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "schemaVersion": {
+            "enum": [
+              1
+            ]
           }
         }
       },
-      "contentVersion": {
-        "enum": [
-          1
-        ]
-      },
-      "ruleLanguageVersion": {
-        "enum": [
-          1
-        ]
-      },
-      "revision": {
-        "bsonType": [
-          "int",
-          "long"
+      {
+        "bsonType": "object",
+        "required": [
+          "ownerId",
+          "shareSlug",
+          "title",
+          "description",
+          "anonymousEnabled",
+          "allowMultipleSubmissions",
+          "status",
+          "closesAt",
+          "questions",
+          "contentVersion",
+          "ruleLanguageVersion",
+          "revision",
+          "createdAt",
+          "updatedAt",
+          "publishedAt",
+          "closedAt",
+          "schemaVersion"
         ],
-        "minimum": 0
-      },
-      "createdAt": {
-        "bsonType": "date"
-      },
-      "updatedAt": {
-        "bsonType": "date"
-      },
-      "publishedAt": {
-        "bsonType": [
-          "date",
-          "null"
-        ]
-      },
-      "closedAt": {
-        "bsonType": [
-          "date",
-          "null"
-        ]
-      },
-      "schemaVersion": {
-        "enum": [
-          1
-        ]
+        "additionalProperties": false,
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "ownerId": {
+            "bsonType": "objectId"
+          },
+          "shareSlug": {
+            "bsonType": "string"
+          },
+          "title": {
+            "bsonType": "string"
+          },
+          "description": {
+            "bsonType": "string"
+          },
+          "anonymousEnabled": {
+            "bsonType": "bool"
+          },
+          "allowMultipleSubmissions": {
+            "bsonType": "bool"
+          },
+          "status": {
+            "enum": [
+              "DRAFT",
+              "PUBLISHED",
+              "CLOSED"
+            ]
+          },
+          "closesAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "questions": {
+            "bsonType": "array",
+            "maxItems": 200,
+            "items": {
+              "bsonType": "object",
+              "required": [
+                "questionId",
+                "order",
+                "title",
+                "type",
+                "required",
+                "options",
+                "constraints",
+                "rules"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "questionId": {
+                  "bsonType": "string"
+                },
+                "order": {
+                  "bsonType": [
+                    "int",
+                    "long"
+                  ],
+                  "minimum": 0
+                },
+                "title": {
+                  "bsonType": "string"
+                },
+                "type": {
+                  "enum": [
+                    "SINGLE",
+                    "MULTI",
+                    "TEXT",
+                    "NUMBER"
+                  ]
+                },
+                "required": {
+                  "bsonType": "bool"
+                },
+                "options": {
+                  "bsonType": "array",
+                  "maxItems": 100,
+                  "items": {
+                    "bsonType": "object",
+                    "required": [
+                      "optionId",
+                      "label"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "optionId": {
+                        "bsonType": "string"
+                      },
+                      "label": {
+                        "bsonType": "string"
+                      }
+                    }
+                  }
+                },
+                "constraints": {
+                  "bsonType": "object",
+                  "required": [
+                    "integerOnly"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "minSelections": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "maxSelections": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "minLength": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "maxLength": {
+                      "bsonType": [
+                        "int",
+                        "null"
+                      ],
+                      "minimum": 0
+                    },
+                    "minValue": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "maxValue": {
+                      "bsonType": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "integerOnly": {
+                      "bsonType": "bool"
+                    }
+                  }
+                },
+                "rules": {
+                  "bsonType": "array",
+                  "maxItems": 50,
+                  "items": {
+                    "bsonType": "object",
+                    "required": [
+                      "ruleId",
+                      "priority",
+                      "condition",
+                      "target"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "ruleId": {
+                        "bsonType": "string"
+                      },
+                      "priority": {
+                        "bsonType": [
+                          "int",
+                          "long"
+                        ],
+                        "minimum": 0
+                      },
+                      "condition": {
+                        "bsonType": "object",
+                        "required": [
+                          "op",
+                          "value"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "op": {
+                            "enum": [
+                              "eq",
+                              "contains_any",
+                              "contains_all",
+                              "set_equals",
+                              "gt",
+                              "gte",
+                              "lt",
+                              "lte",
+                              "between"
+                            ]
+                          },
+                          "value": {
+                            "oneOf": [
+                              {
+                                "bsonType": "string"
+                              },
+                              {
+                                "bsonType": "array",
+                                "items": {
+                                  "bsonType": "string"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "target": {
+                        "bsonType": "string"
+                      }
+                    }
+                  }
+                },
+                "sourceRef": {
+                  "bsonType": "object",
+                  "required": [
+                    "libraryQuestionId",
+                    "questionVersionId",
+                    "contentHash",
+                    "reusePolicyVersion",
+                    "acknowledgedAt"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "libraryQuestionId": {
+                      "bsonType": "objectId"
+                    },
+                    "questionVersionId": {
+                      "bsonType": "objectId"
+                    },
+                    "contentHash": {
+                      "bsonType": "string"
+                    },
+                    "reusePolicyVersion": {
+                      "enum": [
+                        1
+                      ]
+                    },
+                    "acknowledgedAt": {
+                      "bsonType": "date"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "contentVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "ruleLanguageVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "revision": {
+            "bsonType": [
+              "int",
+              "long"
+            ],
+            "minimum": 0
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "updatedAt": {
+            "bsonType": "date"
+          },
+          "publishedAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "closedAt": {
+            "bsonType": [
+              "date",
+              "null"
+            ]
+          },
+          "schemaVersion": {
+            "enum": [
+              2
+            ]
+          }
+        }
       }
-    }
+    ]
   },
   "responses": {
     "bsonType": "object",
@@ -480,5 +794,726 @@
         ]
       }
     }
+  },
+  "question_items": {
+    "bsonType": "object",
+    "required": [
+      "schemaVersion",
+      "ownerId",
+      "name",
+      "status",
+      "headVersionId",
+      "nextVersionNo",
+      "revision",
+      "createdAt",
+      "updatedAt",
+      "workingDraft"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "ownerId": {
+        "bsonType": "objectId"
+      },
+      "name": {
+        "bsonType": "string"
+      },
+      "status": {
+        "enum": [
+          "ACTIVE",
+          "ARCHIVED"
+        ]
+      },
+      "headVersionId": {
+        "bsonType": [
+          "objectId",
+          "null"
+        ]
+      },
+      "nextVersionNo": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "workingDraft": {
+        "oneOf": [
+          {
+            "bsonType": "null"
+          },
+          {
+            "bsonType": "object",
+            "required": [
+              "baseVersionId",
+              "payload",
+              "summaryPolicy"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "baseVersionId": {
+                "bsonType": [
+                  "objectId",
+                  "null"
+                ]
+              },
+              "payload": {
+                "bsonType": "object",
+                "required": [
+                  "title",
+                  "type",
+                  "required",
+                  "options",
+                  "constraints"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "title": {
+                    "bsonType": "string"
+                  },
+                  "type": {
+                    "enum": [
+                      "SINGLE",
+                      "MULTI",
+                      "TEXT",
+                      "NUMBER"
+                    ]
+                  },
+                  "required": {
+                    "bsonType": "bool"
+                  },
+                  "options": {
+                    "bsonType": "array",
+                    "maxItems": 100,
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "optionId",
+                        "label"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "optionId": {
+                          "bsonType": "string"
+                        },
+                        "label": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
+                  },
+                  "constraints": {
+                    "bsonType": "object",
+                    "required": [
+                      "integerOnly"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "minSelections": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ],
+                        "minimum": 0
+                      },
+                      "maxSelections": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ],
+                        "minimum": 0
+                      },
+                      "minLength": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ],
+                        "minimum": 0
+                      },
+                      "maxLength": {
+                        "bsonType": [
+                          "int",
+                          "null"
+                        ],
+                        "minimum": 0
+                      },
+                      "minValue": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "maxValue": {
+                        "bsonType": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "integerOnly": {
+                        "bsonType": "bool"
+                      }
+                    }
+                  }
+                }
+              },
+              "summaryPolicy": {
+                "bsonType": "object",
+                "required": [
+                  "policyVersion",
+                  "numericCuts"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "policyVersion": {
+                    "enum": [
+                      1
+                    ]
+                  },
+                  "numericCuts": {
+                    "bsonType": "array",
+                    "maxItems": 19,
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "question_versions": {
+    "bsonType": "object",
+    "required": [
+      "schemaVersion",
+      "libraryQuestionId",
+      "versionNo",
+      "parentVersionId",
+      "derivedFromVersionId",
+      "restoredFromVersionId",
+      "operation",
+      "operationKey",
+      "requestHash",
+      "payload",
+      "summaryPolicy",
+      "contentHash",
+      "createdBy",
+      "createdAt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "libraryQuestionId": {
+        "bsonType": "objectId"
+      },
+      "versionNo": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "parentVersionId": {
+        "bsonType": [
+          "objectId",
+          "null"
+        ]
+      },
+      "derivedFromVersionId": {
+        "bsonType": [
+          "objectId",
+          "null"
+        ]
+      },
+      "restoredFromVersionId": {
+        "bsonType": [
+          "objectId",
+          "null"
+        ]
+      },
+      "operation": {
+        "enum": [
+          "CREATE",
+          "EDIT",
+          "RESTORE",
+          "FORK"
+        ]
+      },
+      "operationKey": {
+        "bsonType": "string"
+      },
+      "requestHash": {
+        "bsonType": "string"
+      },
+      "payload": {
+        "bsonType": "object",
+        "required": [
+          "title",
+          "type",
+          "required",
+          "options",
+          "constraints"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "bsonType": "string"
+          },
+          "type": {
+            "enum": [
+              "SINGLE",
+              "MULTI",
+              "TEXT",
+              "NUMBER"
+            ]
+          },
+          "required": {
+            "bsonType": "bool"
+          },
+          "options": {
+            "bsonType": "array",
+            "maxItems": 100,
+            "items": {
+              "bsonType": "object",
+              "required": [
+                "optionId",
+                "label"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "optionId": {
+                  "bsonType": "string"
+                },
+                "label": {
+                  "bsonType": "string"
+                }
+              }
+            }
+          },
+          "constraints": {
+            "bsonType": "object",
+            "required": [
+              "integerOnly"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "minSelections": {
+                "bsonType": [
+                  "int",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "maxSelections": {
+                "bsonType": [
+                  "int",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "minLength": {
+                "bsonType": [
+                  "int",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "maxLength": {
+                "bsonType": [
+                  "int",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "minValue": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "maxValue": {
+                "bsonType": [
+                  "string",
+                  "null"
+                ]
+              },
+              "integerOnly": {
+                "bsonType": "bool"
+              }
+            }
+          }
+        }
+      },
+      "summaryPolicy": {
+        "bsonType": "object",
+        "required": [
+          "policyVersion",
+          "numericCuts"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "policyVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "numericCuts": {
+            "bsonType": "array",
+            "maxItems": 19,
+            "items": {
+              "bsonType": "string"
+            }
+          }
+        }
+      },
+      "contentHash": {
+        "bsonType": "string"
+      },
+      "createdBy": {
+        "bsonType": "objectId"
+      },
+      "createdAt": {
+        "bsonType": "date"
+      }
+    }
+  },
+  "access_grants": {
+    "bsonType": "object",
+    "required": [
+      "schemaVersion",
+      "questionVersionId",
+      "granteeId",
+      "grantedBy",
+      "active",
+      "revision",
+      "createdAt",
+      "updatedAt",
+      "revokedAt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "questionVersionId": {
+        "bsonType": "objectId"
+      },
+      "granteeId": {
+        "bsonType": "objectId"
+      },
+      "grantedBy": {
+        "bsonType": "objectId"
+      },
+      "active": {
+        "bsonType": "bool"
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      },
+      "revokedAt": {
+        "bsonType": [
+          "date",
+          "null"
+        ]
+      }
+    }
+  },
+  "question_banks": {
+    "bsonType": "object",
+    "required": [
+      "schemaVersion",
+      "ownerId",
+      "name",
+      "description",
+      "status",
+      "revision",
+      "createdAt",
+      "updatedAt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "ownerId": {
+        "bsonType": "objectId"
+      },
+      "name": {
+        "bsonType": "string"
+      },
+      "description": {
+        "bsonType": "string"
+      },
+      "status": {
+        "enum": [
+          "ACTIVE",
+          "ARCHIVED"
+        ]
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      }
+    }
+  },
+  "question_bank_items": {
+    "bsonType": "object",
+    "required": [
+      "schemaVersion",
+      "bankId",
+      "libraryQuestionId",
+      "questionVersionId",
+      "position",
+      "revision",
+      "createdAt",
+      "updatedAt"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "schemaVersion": {
+        "enum": [
+          1
+        ]
+      },
+      "bankId": {
+        "bsonType": "objectId"
+      },
+      "libraryQuestionId": {
+        "bsonType": "objectId"
+      },
+      "questionVersionId": {
+        "bsonType": "objectId"
+      },
+      "position": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "revision": {
+        "bsonType": [
+          "int",
+          "long"
+        ],
+        "minimum": 0
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      }
+    }
+  },
+  "legacy_question_links": {
+    "oneOf": [
+      {
+        "bsonType": "object",
+        "required": [
+          "schemaVersion",
+          "recordType",
+          "surveyId",
+          "questionId",
+          "currentRevisionId",
+          "revision"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "schemaVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "recordType": {
+            "enum": [
+              "HEAD"
+            ]
+          },
+          "surveyId": {
+            "bsonType": "objectId"
+          },
+          "questionId": {
+            "bsonType": "string"
+          },
+          "currentRevisionId": {
+            "bsonType": [
+              "objectId",
+              "null"
+            ]
+          },
+          "revision": {
+            "bsonType": [
+              "int",
+              "long"
+            ],
+            "minimum": 0
+          }
+        }
+      },
+      {
+        "bsonType": "object",
+        "required": [
+          "schemaVersion",
+          "recordType",
+          "headId",
+          "surveyId",
+          "questionId",
+          "surveyContentVersion",
+          "libraryQuestionId",
+          "questionVersionId",
+          "contentHash",
+          "previousRevisionId",
+          "operation",
+          "operationKey",
+          "requestHash",
+          "linkedBy",
+          "createdAt",
+          "reason",
+          "reusePolicyVersion",
+          "acknowledgedAt"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "_id": {
+            "bsonType": "objectId"
+          },
+          "schemaVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "recordType": {
+            "enum": [
+              "REVISION"
+            ]
+          },
+          "headId": {
+            "bsonType": "objectId"
+          },
+          "surveyId": {
+            "bsonType": "objectId"
+          },
+          "questionId": {
+            "bsonType": "string"
+          },
+          "surveyContentVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "libraryQuestionId": {
+            "bsonType": "objectId"
+          },
+          "questionVersionId": {
+            "bsonType": "objectId"
+          },
+          "contentHash": {
+            "bsonType": "string"
+          },
+          "previousRevisionId": {
+            "bsonType": [
+              "objectId",
+              "null"
+            ]
+          },
+          "operation": {
+            "enum": [
+              "BIND",
+              "CORRECT",
+              "SUSPEND",
+              "RESUME"
+            ]
+          },
+          "operationKey": {
+            "bsonType": "string"
+          },
+          "requestHash": {
+            "bsonType": "string"
+          },
+          "linkedBy": {
+            "bsonType": "objectId"
+          },
+          "createdAt": {
+            "bsonType": "date"
+          },
+          "reason": {
+            "bsonType": "string"
+          },
+          "reusePolicyVersion": {
+            "enum": [
+              1
+            ]
+          },
+          "acknowledgedAt": {
+            "bsonType": "date"
+          }
+        }
+      }
+    ]
   }
 }

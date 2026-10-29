@@ -1,6 +1,6 @@
 # MongoDB问卷系统
 
-第一阶段实现注册登录、问卷管理、四类题型、条件跳转、草稿恢复、匿名及多次填写、提交和统计。后端使用FastAPI与PyMongo，网页无需单独构建。
+系统在第一阶段注册登录、问卷管理、条件跳转、填写提交及统计的基础上，增加了独立题目、不可变版本、跨账号共享、题库、使用情况查询、跨问卷汇总和旧题显式关联。后端仍使用FastAPI与PyMongo，网页无需单独构建。
 
 ## 文档与目录
 
@@ -9,12 +9,13 @@
 | [项目完成报告](docs/项目完成报告.md) | 系统、数据库、API与关键逻辑设计，测试用例及结果，AI使用说明和需求覆盖 |
 | [AI使用记录](docs/AI使用记录.md) | 连续Prompt与生成/修改记录、使用总结、学生设计决策、代码审查和问题处理 |
 | app/、run.py、run_local.py | 后端、网页与启动入口 |
-| docs/mongodb-schema.json | 四集合验证器 |
+| docs/mongodb-schema.json | 十集合运行验证器，surveys支持严格v1/v2 |
+| [第二阶段设计](docs/第二阶段需求分析与数据库设计.md) | D10—D14、Q01—Q09、模型、权限和兼容基线 |
 | tests/、scripts/ | 测试用例、配置/初始化/测试和恢复工具 |
 | data/phase1-history-v1/ | 版本1合成历史数据及独立预期统计 |
-| docs/test-results/、docs/evidence/ | 脱敏测试记录和人工验收截图副本 |
+| docs/test-results/、docs/evidence/ | 原始测试结果、人工验收截图与AI浏览器检查证据 |
 
-本工程以本地第一阶段最终基线`phase1-submit-20261022-r1`为来源，整理为脱敏源码快照，保留有效测试和必要证据。原开发历史及阶段标签仅在本地原工程保留，未发布到本仓库。运行代码保持在`outputs/survey-system/`。
+当前运行版本为2.0.0，最新实现和验收范围见[报告第10节](docs/项目完成报告.md#phase2)。公开第一阶段基线为phase1-public-v1.0.0，原始开发标签、ZIP、manifest和bundle仅在本地保留，不包含在本仓库；第二阶段人工抽样验收已结束，范围和截图见[报告第10.7节](docs/项目完成报告.md#phase2-manual)；未亲自覆盖的项目仍与自动化结果分开记录。公开代码继续归档于原GitHub仓库，版本以main及公开标签为准。
 
 ## 环境与安装
 
@@ -22,11 +23,10 @@
 
 先安装64位Python（已验证3.13.7）和MongoDB Community Server的`mongod.exe`。MongoDB Shell/Compass不能代替数据库服务程序。安装参考[Python虚拟环境文档](https://docs.python.org/3.13/library/venv.html)和[MongoDB Windows官方安装文档](https://www.mongodb.com/docs/v8.0/tutorial/install-mongodb-on-windows/)。当前仅实测MongoDB 6.0.27；其他版本须在本机执行回归确认。网页不需要安装Node.js。
 
-用PowerShell克隆仓库并进入工程目录（路径包含中文或空格时用单引号）：
+用PowerShell进入解压后的`survey-system`目录（路径包含中文或空格时用单引号）：
 
 ```powershell
-git clone https://github.com/keytolovelhm/-MongoDB-.git
-Set-Location -LiteralPath './-MongoDB-/outputs/survey-system'
+Set-Location -LiteralPath 'C:\你的解压位置\survey-system'
 python --version
 Get-Command mongod -ErrorAction SilentlyContinue
 ```
@@ -50,7 +50,7 @@ run_local.py 需要 mongod 在 PATH 中；也可指定已安装的程序路径�
 
 在第二个PowerShell终端可执行`Invoke-RestMethod http://127.0.0.1:8000/api/health`，应显示`status: ok`。页面空白时先确认服务终端无错误、URL和端口一致，再用浏览器控制台记录实际现象。缺少mongod时确认指定的是可执行文件；端口冲突时更换端口；不删除已有数据或密钥。重启使用原来的命令、数据目录及.env即可保留问卷。`run_local.py`运行时使用`--db-port`覆盖MONGO_URI；之后改用`run.py`时须保证.env的MONGO_URI指向实际数据库。
 
-首次生成的.env不要公开或提交到Git。APP_SECRET用于会话校验和问卷内伪名，已有数据期间应保留此密钥；重新生成会影响匿名身份关联和单账号重复限制。
+首次生成的.env不要公开或随作业打包。APP_SECRET用于会话校验和问卷内伪名，已有数据期间应保留此密钥；重新生成会影响匿名身份关联和单账号重复限制。
 
 若使用已经准备好的MongoDB，可运行以下命令生成配置并单独启动网页；若.env已经存在，configure.py会保留原文件，请按需要编辑MONGO_URI。
 
@@ -60,7 +60,7 @@ run_local.py 需要 mongod 在 PATH 中；也可指定已安装的程序路径�
 .\.venv\Scripts\python.exe run.py
 ```
 
-启动程序会确保四集合的验证器与索引存在，不清空已有数据。数据库账号需有对应数据库的建集合、调整验证器和建索引权限。
+启动程序会确保十集合运行验证器与索引存在，不清空已有数据，不批量改写旧文档。旧问卷保持schemaVersion=1，带题目来源的新问卷使用2；旧schema.py初始化器仅供独立四集合历史基线，运行程序使用runtime_schema.py。数据库账号需有对应数据库的建集合、调整验证器和建索引权限。
 
 ## 操作步骤
 
@@ -74,11 +74,44 @@ run_local.py 需要 mongod 在 PATH 中；也可指定已安装的程序路径�
 
 匿名表示对创建者隐藏账号身份，不表示对系统运营者不可关联。数字答案使用十进制字符串传输，例如 `"0.1"`，以Decimal128存储。整数手机号示例可通过数字题的整数约束表达，但不能保留前导零。
 
+
+## 第二阶段操作与合成演示数据
+
+导航“我的题目”可创建题目、保存工作稿、新增版本、从旧版分支、恢复、共享和查看使用/统计。“我的题库”可管理固定版本成员。在问卷草稿内点击“从题目库选题”，选择自己的题、收到的共享或题库成员，确认披露范围后导入；题干、选项和约束变为只读，本卷顺序与规则仍可配置。换题意须新建版本后显式替换，不会同步修改旧卷。
+
+问卷卡片的“题目与历史关联”可从自有快照保存题目；冻结的schemaVersion=1问卷还可显式关联、暂停、更正和恢复。保存题目不自动归并历史回答。库题原作者查看所有采用的固定展示标识和版本汇总，借用者只汇总自己的问卷；他人的账号、原始答卷和文本不向原作者披露。
+
+为人工验收创建专属演示库（不要换成已有运行库名）。终端一从项目根执行：
+
+```powershell
+$env:MONGO_DATABASE='survey_demo_stage2_acceptance'
+.\.venv\Scripts\python.exe run_local.py --mongod 'D:\MongoDB\Server\6.0\bin\mongod.exe'
+```
+
+终端二从相同项目目录执行，先运行configure.py确保本地密钥存在；已有.env不会被覆盖。两个终端应使用同一份.env/APP_SECRET：
+
+```powershell
+.\.venv\Scripts\python.exe scripts\configure.py
+.\.venv\Scripts\python.exe scripts\seed_phase2_demo.py --uri mongodb://127.0.0.1:27030 --database survey_demo_stage2_acceptance
+```
+
+默认输出.runtime/phase2-demo.json，含合成账号、问卷链接、版本ID与预期统计。所有演示账号密码为`Demo-only-12345`；这些是公开的测试账号口令。`demo_author`是原题作者，`demo_borrower`是借用者，`demo_outsider`用于权限检查，`demo_fill01`—`demo_fill06`用于填写。全部数据及告知确认由脚本合成，不能记作人工验收。
+
+| 作者查看的演示题目 | 固定预期 |
+| --- | --- |
+| 年龄（可展示汇总）v1 | 自有2份、均值15；他人5份、均值22；合并7份、均值20 |
+| 年龄（稀有分组抑制） | 他人/合并隐藏，PRIVACY_SUPPRESSED |
+| 年龄（4组抑制） | 他人/合并隐藏，INSUFFICIENT_SAMPLE |
+
+脚本生成9个账号、4份问卷、12份正式答卷，另有v1/v2、另存来源、两个个人题库及独立的合成旧格式关联。它只接受survey_demo_stage2_开头且没有业务文档的库，拒绝覆盖；中断后不要强行覆盖，请使用新库名。数据场景可重复生成，ObjectId、时间和密码散列每次不同。
+
+k=5当前是建议运行参数，尚未最终确认。它限制他人汇总的非空分组，不是全局独立人数；详情见报告。
+
 <a id="tests"></a>
 
 ## 运行测试
 
-完整后端测试使用隔离MongoDB，测试数据库名由随机UUID生成。测试结果及具体输入、输出见[报告测试章节](docs/项目完成报告.md#testing)。
+完整后端测试使用隔离MongoDB，测试数据库名由随机UUID生成。测试结果及具体输入、输出见[最新测试章节](docs/项目完成报告.md#phase2-tests)，原第一阶段证据仍保留。
 
 运行纯逻辑测试：
 
@@ -100,14 +133,7 @@ run_local.py 需要 mongod 在 PATH 中；也可指定已安装的程序路径�
 .\.venv\Scripts\python.exe scripts\smoke_http.py --data-dir .runtime\smoke-mongo --report-dir docs\test-results\my-smoke
 ```
 
-前端DOM检查为可选开发验证，需要Node.js 24和npm。在工程目录执行：
-
-```powershell
-npm --prefix tests/frontend install
-.\.venv\Scripts\python.exe scripts\smoke_http.py --data-dir .runtime\dom-mongo --report-dir docs\test-results\my-dom --node node
-```
-
-若mongod不在PATH，同样追加`--mongod '完整程序路径'`。脚本会加载正式前端模块；Node需要支持SourceTextModule，脚本已传入相应实验标志。也可用`--jsdom-module`指定jsdom/lib/api.js路径。DOM检查用于验证前端交互，页面布局仍需浏览器验收。
+前端DOM检查为可选开发验证。在 tests/frontend 下安装 package.json 中的jsdom，然后给 smoke_http.py 追加 `--node node`；脚本会加载正式前端模块。Node需要支持SourceTextModule，脚本已传入相应实验标志。也可用 `--jsdom-module`指定jsdom/lib/api.js路径。第二阶段DOM交互追加`--dom-script tests/frontend/phase2.mjs`；默认脚本回归第一阶段填写页面。DOM结果与人工验收分开记录。2026年10月29日新增权限测试3项通过，完整后端169项通过（原126项＋第二阶段43项）；发布前在公开工程副本再次回归169项通过，整体行覆盖率95.02%、library_stats.py行覆盖率100%。第一阶段18项DOM、第二阶段16项DOM、HTTP6项及AI浏览器检查沿用10月23日记录，本轮未重跑网页测试。结果见[报告第10.6节](docs/项目完成报告.md#phase2-tests)。
 
 <a id="history-baseline"></a>
 
@@ -155,24 +181,22 @@ check无需MongoDB，核对文件散列。restore先检查文件，再要求新�
 
 生成器仅重写这一合成基线目录的四个JSON和manifest；expected-stats.json为独立预期，不由数据库结果反写。生成后用Git diff检查应无差异。
 
-第二阶段先记录本仓库当前提交，并保留`data/phase1-history-v1`原件，在新的专属数据库恢复；实现变更后同时验证旧版本读取、路径解释、Decimal128数值、草稿过滤、匿名去重与固定统计。若需求要求迁移，应另存迁移脚本、前后快照及新预期，保留这一版本1原件。当前verify严格要求原始BSON完全一致，适用于未迁移副本；需要改变数据结构的迁移验收应新增测试，原基线应保持不变，迁移后的数据另设预期。第二阶段迁移将在新需求确定后开展。
+保留phase1-public-v1.0.0及本目录原件，在新的专属数据库恢复；实现变更后同时验证旧版本读取、路径解释、Decimal128数值、草稿过滤、匿名去重与固定统计。若需求要求迁移，应另存迁移脚本、前后快照及新预期，保留这一版本1原件。当前verify严格要求原始BSON完全一致，适用于未迁移副本；需要改变数据结构的迁移验收应新增测试，原基线应保持不变，迁移后的数据另设预期。十集合扩展库使用scripts/verify_phase2_history.py复核旧BSON和固定统计；原verify的四集合规则保持不变。
 
 测试`tests/test_history_baseline.py`覆盖生成一致性、路径有效、文件篡改拒绝、目标库限制、MongoDB恢复与只读复核、拒绝覆盖、验证器/索引、Decimal128和统计。结果见[项目完成报告](docs/项目完成报告.md#testing)。
 
 <a id="version-baseline"></a>
 
-## 版本与基线
+## 公开版本与隐私
 
-业务API版本为1.0.0，结构、题意、规则及身份版本均为1。公开基线标签为`phase1-public-v1.0.0`，只指向本仓库的脱敏源码快照。原`phase1-v1.0.0`、`phase1-final-20261021`、`phase1-submit-20261022`及`phase1-submit-20261022-r1`标签和开发提交仅在本地原工程保留，未推送到公开仓库。
-
-在仓库根目录查看公开版本，或检出公开基线：
+本仓库在原main历史上继续提交第二阶段，API版本2.0.0，问卷结构支持1/2，题意、规则、身份解释仍为1。公开标签phase1-public-v1.0.0保留；第二阶段公开标签使用phase2-public-v2.0.0。原开发标签和完整未脱敏历史只在本地原工程保留，不合并进公开仓库。
 
 ```powershell
 git log --oneline --decorate --graph
-git rev-parse HEAD
-git worktree add --detach '../survey-public-baseline' phase1-public-v1.0.0
+git worktree add --detach '../survey-stage1' phase1-public-v1.0.0
+git worktree add --detach '../survey-stage2' phase2-public-v2.0.0
 ```
 
-版本1合成历史数据的恢复使用上文脚本，不依赖原开发历史。公开证据中的日志以`LOCAL_USER`、`LOCAL_TEST_HOST`等占位符替换本机标识；E01为账号遮盖后的截图，E02为去除元数据的公开副本。它们不是未经处理的原始文件，处理范围和散列见[AI使用记录](docs/AI使用记录.md#public-release)。
+版本1合成历史数据和独立预期保持不变。测试日志公开副本以LOCAL_USER、LOCAL_TEST_HOST、sandbox.LOCAL替换本机标识，原始失败及修复计数不变。第一阶段E01/E02沿用已有公开副本；本轮人工截图及原文件名/SHA256见报告第10.7节。截图不是由AI生成。
 
-.env包含应用密钥，应与运行数据一同妥善保留，不纳入提交。虚拟环境、node_modules和.runtime也不纳入提交。
+私有.env、APP_SECRET、真实运行库、虚拟环境、缓存、临时数据库、ZIP和Git bundle不进入公开仓库。已有运行密钥和数据库应在本地妥善保留，不能为了公开整理而删除。

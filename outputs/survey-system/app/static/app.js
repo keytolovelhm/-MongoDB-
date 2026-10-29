@@ -2,10 +2,11 @@ import {api,el,root,state,heading,field,button,notice,statuses,dateInput,time} f
 import {editor,sample} from './editor.js';
 import {filler} from './filler.js';
 import {stats} from './stats.js';
+import {libraryHome,bankHome,legacyView} from './library.js';
 
 function nav(){
   const box=document.querySelector('#nav');
-  box.replaceChildren(...(state.user?[el('span',{},state.user.username),el('a',{href:'/',class:'button'},'我的问卷'),button('退出',async()=>{await api('/auth/logout','POST');state.user=null;state.csrf='';nav();auth();})]:[el('span',{class:'muted'},'登录后创建或填写问卷')]));
+  box.replaceChildren(...(state.user?[el('span',{},state.user.username),el('a',{href:'/',class:'button'},'我的问卷'),button('我的题目',()=>libraryHome(()=>dashboard())),button('我的题库',()=>bankHome(()=>dashboard())),button('退出',async()=>{await api('/auth/logout','POST');state.user=null;state.csrf='';nav();auth();})]:[el('span',{class:'muted'},'登录后创建或填写问卷')]));
 }
 function auth(register=false){
   const username=el('input',{name:'username',autocomplete:'username',minlength:3,maxlength:40,required:true});
@@ -36,6 +37,7 @@ async function dashboard(skip=0){
       el('p',{class:'muted'},item.description||'暂无说明'),el('small',{},'更新于 '+time(item.updatedAt)));
     const actions=el('div',{class:'actions'});
     const full=()=>api('/surveys/'+item.id);
+    actions.append(button('题目与历史关联',async()=>legacyView(await full(),()=>dashboard(skip))));
     if(item.status==='DRAFT'){
       actions.append(button('编辑',async()=>editor(await full(),()=>dashboard(skip))),button('发布',async()=>{
         if(confirm('发布后题目、规则和参与策略将冻结，确定发布？')){await api('/surveys/'+item.id+'/publish','POST',{revision:item.revision});notice('问卷已发布');await dashboard(skip);}

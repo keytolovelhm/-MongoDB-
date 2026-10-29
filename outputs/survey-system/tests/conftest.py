@@ -22,7 +22,8 @@ def application():
 @pytest.fixture
 def env(application):
     assert application.store.db.name.startswith('survey_test_')
-    for name in ['users','surveys','responses','sessions']:application.store.db[name].delete_many({})
+    from app.runtime_schema import RUNTIME_SCHEMAS
+    for name in RUNTIME_SCHEMAS:application.store.db[name].delete_many({})
     application.client.cookies.clear()
     return application
 

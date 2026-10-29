@@ -27,6 +27,7 @@ def main():
     parser.add_argument('--mongod',default='mongod');parser.add_argument('--data-dir',required=True)
     parser.add_argument('--report-dir',default='docs/test-results/smoke-01')
     parser.add_argument('--node');parser.add_argument('--jsdom-module')
+    parser.add_argument('--dom-script',default='tests/frontend/smoke.mjs')
     args=parser.parse_args();project=Path(__file__).resolve().parents[1]
     report=(project/args.report_dir).resolve();report.mkdir(parents=True,exist_ok=True)
     data=Path(args.data_dir).resolve();data.mkdir(parents=True,exist_ok=True)
@@ -54,7 +55,7 @@ def main():
             assert health.status_code==200, (health.status_code,health.text[:500])
             assert health.json()['status']=='ok';checks.append('real TCP health endpoint')
             assert '问卷工作台' in http.get('/').text;checks.append('HTML served with UTF-8')
-            for file in ['app.js','core.js','editor.js','filler.js','stats.js','style.css']:
+            for file in ['app.js','core.js','editor.js','filler.js','stats.js','library.js','style.css']:
                 assert http.get('/static/'+file).status_code==200
             checks.append('all frontend static assets served')
             data_user={'username':'http_'+uuid4().hex[:8],'password':'HTTP-test-password-123'}
@@ -75,7 +76,7 @@ def main():
         if args.node:
             environment={**os.environ,'NODE_NO_WARNINGS':'0','NODE_USE_ENV_PROXY':'0'}
             if args.jsdom_module:environment['JSDOM_MODULE']=Path(args.jsdom_module).resolve().as_uri()
-            result=subprocess.run([args.node,'--experimental-vm-modules',str(project/'tests/frontend/smoke.mjs'),base,str(report/'frontend-dom.json')],env=environment,cwd=project,capture_output=True,text=True,encoding='utf-8',timeout=60)
+            result=subprocess.run([args.node,'--experimental-vm-modules',str(project/args.dom_script),base,str(report/'frontend-dom.json')],env=environment,cwd=project,capture_output=True,text=True,encoding='utf-8',timeout=120)
             (report/'frontend-output.txt').write_text(result.stdout+'\n'+result.stderr,encoding='utf-8')
             print(result.stdout,flush=True)
             if result.returncode:raise RuntimeError('前端DOM验证失败，见frontend-output.txt')

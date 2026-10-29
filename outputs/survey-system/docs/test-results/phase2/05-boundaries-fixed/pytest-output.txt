@@ -1,0 +1,75 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.7, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system
+configfile: pyproject.toml
+plugins: anyio-4.15.1, cov-7.1.0
+collecting ... collected 29 items
+
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[SINGLE] PASSED [  3%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[MULTI] PASSED [  6%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[TEXT] PASSED [ 10%]
+tests/test_phase2.py::test_S2_01_create_import_two_instances_and_freeze[NUMBER] PASSED [ 13%]
+tests/test_phase2.py::test_S2_03_source_server_owned_and_snapshot_body_protected PASSED [ 17%]
+tests/test_phase2.py::test_S2_04_05_versions_branch_restore_and_idempotency PASSED [ 20%]
+tests/test_phase2.py::test_S2_06_07_share_fork_revoke_and_existing_draft PASSED [ 24%]
+tests/test_phase2.py::test_S2_09_replace_keeps_rules_and_rejects_invalid_options PASSED [ 27%]
+tests/test_phase2.py::test_S2_11_12_banks_pinned_upgrade_permission_and_remove PASSED [ 31%]
+tests/test_phase2.py::test_S2_13_numeric_aggregate_author_auto_and_privacy PASSED [ 34%]
+tests/test_phase2.py::test_S2_18_runtime_upgrade_preserves_original_BSON_and_stats PASSED [ 37%]
+tests/test_phase2.py::test_S2_19_27_legacy_bind_pause_correct_preserves_BSON PASSED [ 41%]
+tests/test_phase2.py::test_S2_schema_rejects_unknown_fields_and_unique_indexes PASSED [ 44%]
+tests/test_phase2.py::test_S2_23_expired_policy_filters_and_empty_foreign_cohort PASSED [ 48%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[NUMBER-values0-INSUFFICIENT_SAMPLE] PASSED [ 51%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[NUMBER-values1-PRIVACY_SUPPRESSED] PASSED [ 55%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[NUMBER-values2-AVAILABLE] PASSED [ 58%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[NUMBER-values3-AVAILABLE] PASSED [ 62%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[SINGLE-values4-AVAILABLE] PASSED [ 65%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[SINGLE-values5-PRIVACY_SUPPRESSED] PASSED [ 68%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[MULTI-values6-AVAILABLE] PASSED [ 72%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[MULTI-values7-PRIVACY_SUPPRESSED] PASSED [ 75%]
+tests/test_phase2.py::test_S2_24_25_26_privacy_cells_and_text[TEXT-values8-AVAILABLE] PASSED [ 79%]
+tests/test_phase2.py::test_S2_15_same_account_repeat_and_two_instances_do_not_inflate_threshold PASSED [ 82%]
+tests/test_phase2.py::test_S2_14_16_17_versions_separate_and_empty_answers_excluded PASSED [ 86%]
+tests/test_phase2.py::test_S2_04_concurrent_same_operation_creates_one_version PASSED [ 89%]
+tests/test_phase2.py::test_S2_28_orphan_revision_retry_and_correct_root_counts PASSED [ 93%]
+tests/test_phase2.py::test_S2_27_content_mismatch_and_legacy_option_ids PASSED [ 96%]
+tests/test_phase2.py::test_S2_21_index_explain PASSED                    [100%]
+
+============================== warnings summary ===============================
+..\..\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1
+  C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\work\fresh-windows\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\05-boundaries-fixed\junit.xml -
+=============================== tests coverage ================================
+_______________ coverage: platform win32, python 3.13.7-final-0 _______________
+
+Name                     Stmts   Miss  Cover   Missing
+------------------------------------------------------
+app\__init__.py              0      0   100%
+app\attempt_service.py     102     17    83%   44-45, 48, 50, 59-61, 65-68, 71-72, 115-116, 118-119
+app\auth_service.py         34      5    85%   18, 22, 28, 37, 43
+app\bank_service.py         60      7    88%   25-26, 30-34, 70
+app\config.py               24     11    54%   7-12, 25-29
+app\domain.py              168     60    64%   11, 15, 19-20, 25, 28, 32, 38, 42, 45, 47, 53, 56, 58, 61, 66, 68-70, 74, 78, 82-94, 99, 103, 114, 119, 122, 124, 126, 128, 132, 135, 137, 139, 143, 145, 147, 152-162, 168, 180
+app\errors.py                6      0   100%
+app\legacy_service.py       68     14    79%   16, 23-26, 43, 55, 59, 75-78, 82-84
+app\library_api.py         113     12    89%   22, 27, 36, 44, 74, 98-99, 108, 116-117, 121, 142
+app\library_models.py       55      0   100%
+app\library_service.py     216     30    86%   59, 64, 72, 113, 133-134, 139-146, 150, 159-163, 205-208, 226-231, 245
+app\library_stats.py        77      1    99%   90
+app\main.py                155     19    88%   77-78, 85, 87, 95, 100-101, 115, 119-121, 125, 145, 149, 157, 165, 177, 181, 185
+app\models.py               68      5    93%   63-66, 68
+app\repositories.py         67      5    93%   16, 74-76, 81
+app\runtime_schema.py       37      0   100%
+app\schema.py               37      2    95%   62, 82
+app\security.py             17      1    94%   16
+app\stats_service.py        49     18    63%   44-45, 48-52, 55-68
+app\survey_service.py       92     19    79%   17, 24, 49-50, 55-56, 91-98, 101-107
+app\usage_service.py        57      3    95%   40-42
+------------------------------------------------------
+TOTAL                     1502    229    85%
+Coverage JSON written to file C:\Users\LOCAL_USER\Documents\ChatGPT\当代数据管理系统\outputs\survey-system\docs\test-results\phase2\05-boundaries-fixed\coverage.json
+======================= 29 passed, 1 warning in 12.63s ========================

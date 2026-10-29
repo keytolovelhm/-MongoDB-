@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-29",
+  "stage": "isolated MongoDB startup, before pytest",
+  "execution": "workspace sandbox",
+  "error": "RuntimeError: 临时MongoDB连接超时",
+  "testsExecuted": false,
+  "action": "Retry the same targeted tests outside the sandbox against an owned temporary MongoDB process."
+}

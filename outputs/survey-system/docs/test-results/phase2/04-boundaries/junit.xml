@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="29" time="14.105" timestamp="2026-10-23T10:37:30.303359+08:00" hostname="LOCAL_TEST_HOST"><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[SINGLE]" time="0.649" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[MULTI]" time="0.176" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[TEXT]" time="0.184" /><testcase classname="tests.test_phase2" name="test_S2_01_create_import_two_instances_and_freeze[NUMBER]" time="0.164" /><testcase classname="tests.test_phase2" name="test_S2_03_source_server_owned_and_snapshot_body_protected" time="0.129" /><testcase classname="tests.test_phase2" name="test_S2_04_05_versions_branch_restore_and_idempotency" time="0.179" /><testcase classname="tests.test_phase2" name="test_S2_06_07_share_fork_revoke_and_existing_draft" time="0.343" /><testcase classname="tests.test_phase2" name="test_S2_09_replace_keeps_rules_and_rejects_invalid_options" time="0.148" /><testcase classname="tests.test_phase2" name="test_S2_11_12_banks_pinned_upgrade_permission_and_remove" time="0.377" /><testcase classname="tests.test_phase2" name="test_S2_13_numeric_aggregate_author_auto_and_privacy" time="1.000" /><testcase classname="tests.test_phase2" name="test_S2_18_runtime_upgrade_preserves_original_BSON_and_stats" time="0.362" /><testcase classname="tests.test_phase2" name="test_S2_19_27_legacy_bind_pause_correct_preserves_BSON" time="0.281" /><testcase classname="tests.test_phase2" name="test_S2_schema_rejects_unknown_fields_and_unique_indexes" time="0.111" /><testcase classname="tests.test_phase2" name="test_S2_23_expired_policy_filters_and_empty_foreign_cohort" time="0.223"><failure message="AssertionError: {&quot;error&quot;:{&quot;code&quot;:&quot;request_invalid&quot;,&quot;message&quot;:&quot;请求格式或字段不合法&quot;,&quot;fields&quot;:[{&quot;field&quot;:&quot;body.reusePolicyVersion&quot;,&quot;message&quot;:&quot;Input should be 1&quot;,&quot;type&quot;:&quot;literal_error&quot;}]}}&#10;assert 422 == 409&#10; +  where 422 = &lt;Response [422 Unprocessable Entity]&gt;.status_code">actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x0000023CBB273920&gt;
+
+    def test_S2_23_expired_policy_filters_and_empty_foreign_cohort(actor):
+        a, b = actor(), actor('borrower'); item = library(a); v = item['version']; share(a, v, b)
+        s = imported(b, v)
+        base = {'versionId': v['id'], 'revision': s['revision'], 'reusePolicyVersion': 2, 'acknowledged': True}
+&gt;       b.call('POST', '/surveys/'+s['id']+'/questions/import', base, 409)
+
+tests\test_phase2.py:229: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.conftest.Actor object at 0x0000023CBB323D10&gt;, method = 'POST'
+path = '/surveys/6adac86e300a0749c37ceda8/questions/import'
+data = {'versionId': '6adac86e300a0749c37ceda6', 'revision': 1, 'reusePolicyVersion': 2, 'acknowledged': True}
+status = 409
+
+    def call(self,method,path,data=None,status=200):
+        r=self.env.client.request(method,'/api'+path,headers=self.headers,**({'json':data} if data is not None else {}))
+&gt;       assert r.status_code==status,r.text
+E       AssertionError: {"error":{"code":"request_invalid","message":"请求格式或字段不合法","fields":[{"field":"body.reusePolicyVersion","message":"Input should be 1","type":"literal_error"}]}}
+E       assert 422 == 409
+E        +  where 422 = &lt;Response [422 Unprocessable Entity]&gt;.status_code
+
+tests\conftest.py:42: AssertionError</failure></testcase><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[NUMBER-values0-INSUFFICIENT_SAMPLE]" time="0.571" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[NUMBER-values1-PRIVACY_SUPPRESSED]" time="0.680" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[NUMBER-values2-AVAILABLE]" time="0.758" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[NUMBER-values3-AVAILABLE]" time="0.701" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[SINGLE-values4-AVAILABLE]" time="0.741" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[SINGLE-values5-PRIVACY_SUPPRESSED]" time="0.793" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[MULTI-values6-AVAILABLE]" time="0.802" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[MULTI-values7-PRIVACY_SUPPRESSED]" time="0.792" /><testcase classname="tests.test_phase2" name="test_S2_24_25_26_privacy_cells_and_text[TEXT-values8-AVAILABLE]" time="0.770" /><testcase classname="tests.test_phase2" name="test_S2_15_same_account_repeat_and_two_instances_do_not_inflate_threshold" time="0.529" /><testcase classname="tests.test_phase2" name="test_S2_14_16_17_versions_separate_and_empty_answers_excluded" time="0.333" /><testcase classname="tests.test_phase2" name="test_S2_04_concurrent_same_operation_creates_one_version" time="0.142" /><testcase classname="tests.test_phase2" name="test_S2_28_orphan_revision_retry_and_correct_root_counts" time="0.137"><failure message="AssertionError: {&quot;error&quot;:{&quot;code&quot;:&quot;summary_policy&quot;,&quot;message&quot;:&quot;无有限上下界的数字题请指定固定分组切点&quot;,&quot;field&quot;:null}}&#10;assert 422 == 201&#10; +  where 422 = &lt;Response [422 Unprocessable Entity]&gt;.status_code">actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x0000023CBB2DEC00&gt;
+env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x0000023CBB06C050&gt;, client=&lt;starlette.testclient.TestClient obj...11f1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x0000023CBB06B5C0&gt;
+
+    def test_S2_28_orphan_revision_retry_and_correct_root_counts(actor,env,monkeypatch):
+        a=actor();s=published(a,[question(typ='NUMBER')]);x=answer(a,attempt(a,s),'q1','22');submit(a,x)
+&gt;       first=a.call('POST',f"/surveys/{s['id']}/questions/q1/save-to-library",{'name':'一'},201)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_phase2.py:300: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;tests.conftest.Actor object at 0x0000023CBB2BC770&gt;, method = 'POST'
+path = '/surveys/6adac876300a0749c37cee93/questions/q1/save-to-library'
+data = {'name': '一'}, status = 201
+
+    def call(self,method,path,data=None,status=200):
+        r=self.env.client.request(method,'/api'+path,headers=self.headers,**({'json':data} if data is not None else {}))
+&gt;       assert r.status_code==status,r.text
+E       AssertionError: {"error":{"code":"summary_policy","message":"无有限上下界的数字题请指定固定分组切点","field":null}}
+E       assert 422 == 201
+E        +  where 422 = &lt;Response [422 Unprocessable Entity]&gt;.status_code
+
+tests\conftest.py:42: AssertionError</failure></testcase><testcase classname="tests.test_phase2" name="test_S2_27_content_mismatch_and_legacy_option_ids" time="0.167" /><testcase classname="tests.test_phase2" name="test_S2_21_index_explain" time="0.122"><failure message="bson.errors.InvalidBSON: 'utf-8' codec can't decode byte 0xc1 in position 0: invalid start byte">actor = &lt;function actor.&lt;locals&gt;.&lt;lambda&gt; at 0x0000023CBB2DFCE0&gt;
+env = namespace(app=&lt;fastapi.applications.FastAPI object at 0x0000023CBB06C050&gt;, client=&lt;starlette.testclient.TestClient obj...11f1', secret='test-key-only-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', secure_cookie=False, session_hours=12))
+
+    def test_S2_21_index_explain(actor,env):
+        a=actor();item=library(a);s=imported(a,item['version'])
+        plans={}
+        queries=[('question_versions',{'libraryQuestionId':ObjectId(item['item']['id'])},'version_number'),
+                 ('surveys',{'questions.sourceRef.questionVersionId':ObjectId(item['version']['id'])},'source_questionVersionId')]
+        for collection,query,index in queries:
+&gt;           plan=env.store.db[collection].find(query).hint(index).explain()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_phase2.py:338: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor.py:192: in explain
+    return next(c)
+           ^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor.py:404: in __next__
+    return self.next()
+           ^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor.py:383: in next
+    if len(self._data) or self._refresh():
+                          ^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor.py:334: in _refresh
+    self._send_message(q)
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor.py:237: in _send_message
+    response = client._run_operation(operation, self._run_with_conn, address=self._address)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\_csot.py:126: in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:1994: in _run_operation
+    return self._retryable_read(
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:2116: in _retryable_read
+    return self._retry_internal(
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\_csot.py:126: in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:2077: in _retry_internal
+    ).run()
+      ^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:2947: in run
+    res = self._read() if self._is_read else self._write()
+          ^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:3187: in _read
+    return self._func(self._session, self._server, conn, read_pref)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\mongo_client.py:1992: in _cmd
+    return run_with_conn(conn, operation, read_preference)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\helpers.py:50: in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\cursor_base.py:120: in _run_with_conn
+    docs, reply, duration = run_cursor_command(
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\command_runner.py:329: in run_cursor_command
+    docs, reply, duration_s = _run_command(
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\synchronous\command_runner.py:198: in _run_command
+    docs = unpack_res(
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\cursor_shared.py:1043: in _unpack_response
+    return response.unpack_response(cursor_id, codec_options, user_fields, legacy_response)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\pymongo\message.py:1134: in unpack_response
+    return bson._decode_all_selective(self.payload_document, codec_options, user_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..\..\work\fresh-windows\.venv\Lib\site-packages\bson\__init__.py:1300: in _decode_all_selective
+    return decode_all(data, codec_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+data = &lt;memory at 0x0000023CBB30D300&gt;
+codec_options = CodecOptions(document_class=dict, tz_aware=True, uuid_representation=UuidRepresentation.UNSPECIFIED, unicode_decode_er...ne, type_registry=TypeRegistry(type_codecs=[], fallback_encoder=None), datetime_conversion=DatetimeConversion.DATETIME)
+
+    def decode_all(
+        data: _ReadableBuffer, codec_options: Optional[CodecOptions[_DocumentType]] = None
+    ) -&gt; Union[list[dict[str, Any]], list[_DocumentType]]:
+        """Decode BSON data to multiple documents.
+    
+        `data` must be a bytes-like object implementing the buffer protocol that
+        provides concatenated, valid, BSON-encoded documents.
+    
+        :param data: BSON data
+        :param codec_options: An instance of
+            :class:`~bson.codec_options.CodecOptions`.
+    
+        .. versionchanged:: 3.9
+           Supports bytes-like objects that implement the buffer protocol.
+    
+        .. versionchanged:: 3.0
+           Removed `compile_re` option: PyMongo now always represents BSON regular
+           expressions as :class:`~bson.regex.Regex` objects. Use
+           :meth:`~bson.regex.Regex.try_compile` to attempt to convert from a
+           BSON regular expression to a Python regular expression object.
+    
+           Replaced `as_class`, `tz_aware`, and `uuid_subtype` options with
+           `codec_options`.
+        """
+        if codec_options is None:
+            return _decode_all(data, DEFAULT_CODEC_OPTIONS)
+    
+        if not isinstance(codec_options, CodecOptions):
+            raise _CODEC_OPTIONS_TYPE_ERROR
+    
+&gt;       return _decode_all(data, codec_options)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       bson.errors.InvalidBSON: 'utf-8' codec can't decode byte 0xc1 in position 0: invalid start byte
+
+..\..\work\fresh-windows\.venv\Lib\site-packages\bson\__init__.py:1209: InvalidBSON</failure></testcase></testsuite></testsuites>

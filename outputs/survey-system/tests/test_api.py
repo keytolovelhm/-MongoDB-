@@ -13,6 +13,7 @@ from app.errors import AppError
 from app.models import AttemptCreate, AnswerWrite, Credentials
 from app.repositories import utcnow, wire
 from app.schema import ensure_schema
+from app.runtime_schema import ensure_runtime_schema, RUNTIME_SCHEMAS
 from .helpers import question, definition, rule
 
 pytestmark=pytest.mark.integration
@@ -242,10 +243,10 @@ def test_T27_D09B_admitted_before_close_can_commit_after_close(env,actor,monkeyp
 def test_T28_schema_reinitialization_preserves_stage1_baseline(env,actor):
     owner=actor();s=published(owner,[question(typ='NUMBER')]);a=answer(owner,attempt(owner,s),'q1','0.1');final=submit(owner,a)
     before=owner.call('GET',f"/surveys/{s['id']}/stats")
-    ensure_schema(env.store.db)
+    ensure_runtime_schema(env.store.db)
     assert owner.call('GET',f"/surveys/{s['id']}/stats")==before
     assert owner.call('GET',f"/attempts/{a['id']}")['answers']==final['answers']
-    assert set(env.store.db.list_collection_names())=={'users','surveys','responses','sessions'}
+    assert set(env.store.db.list_collection_names())==set(RUNTIME_SCHEMAS)
 
 
 def test_T30_real_database_schema_indexes_expired_session(env,actor,monkeypatch):
@@ -263,7 +264,7 @@ def test_T30_real_database_schema_indexes_expired_session(env,actor,monkeypatch)
 
 def test_health_openapi_request_limit_and_db_error(env,actor,monkeypatch):
     assert env.client.get('/api/health').json()['status']=='ok'
-    assert env.client.get('/openapi.json').json()['info']['version']=='1.0.0'
+    assert env.client.get('/openapi.json').json()['info']['version']=='2.0.0'
     assert env.client.get('/static/app.js').status_code==200
     assert env.client.post('/api/auth/login',content='x'*(2*1024*1024+1)).status_code==413
     owner=actor()

@@ -1,4 +1,5 @@
 import {api, el, root, field, select, button, check, types, heading, notice, dateInput} from './core.js';
+import {pickVersion,confirmReuse,legacyView} from './library.js';
 
 const uid = () => crypto.randomUUID().replaceAll('-', '');
 function question(type='SINGLE') { return {questionId:uid(), order:0, title:'', type, required:false, options:type==='SINGLE'||type==='MULTI'?[{optionId:uid(),label:'选项一'},{optionId:uid(),label:'选项二'}]:[], constraints:{}, rules:[]}; }
@@ -19,6 +20,19 @@ export function sample() {
 
 export async function editor(survey, back) {
   const draft = structuredClone(survey || {title:'',description:'',anonymousEnabled:false,allowMultipleSubmissions:false,closesAt:null,questions:[]});
+  async function persist(){
+    const payload={title:draft.title,description:draft.description,anonymousEnabled:draft.anonymousEnabled,allowMultipleSubmissions:draft.allowMultipleSubmissions,closesAt:draft.closesAt,
+      questions:draft.questions.map((q,i)=>Object.fromEntries([...['questionId','title','type','required','options','constraints','rules'].map(k=>[k,q[k]]),['order',i]]))};
+    const saved=draft.id?await api('/surveys/'+draft.id,'PUT',{...payload,revision:draft.revision}):await api('/surveys','POST',payload);
+    Object.assign(draft,saved);return saved;
+  }
+  async function choose(replaceQuestionId=null){
+    await persist();
+    await pickVersion(v=>confirmReuse(v,async ack=>{
+      const saved=await api('/surveys/'+draft.id+'/questions/import','POST',{...ack,revision:draft.revision,versionId:v.id,replaceQuestionId});
+      Object.assign(draft,saved);notice('已导入固定版本');render();
+    },render),render);
+  }
   function render() {
     root.replaceChildren(heading(draft.id ? '编辑问卷' : '新建问卷', '保存草稿后可继续编辑；发布后题目、选项、规则和参与策略会冻结。'));
     const title = el('input',{value:draft.title,required:true,maxlength:200,onInput:e=>draft.title=e.target.value});
@@ -29,13 +43,11 @@ export async function editor(survey, back) {
     root.append(basic);
     const questions=el('section',{class:'panel'},el('h2',{},'题目与跳转规则'));
     draft.questions.forEach((q,i)=>questions.append(questionEditor(q,i)));
-    questions.append(button('＋ 添加题目',()=>{draft.questions.push(question());render();}));root.append(questions);
+    questions.append(el('div',{class:'actions'},button('＋ 添加题目',()=>{draft.questions.push(question());render();}),
+      button('从题目库选题',()=>choose()),draft.id?button('保存本卷题目到题目库',async()=>{await persist();await legacyView(draft,render);}):null));root.append(questions);
     root.append(el('div',{class:'toolbar'},button('返回列表',()=>{if(confirm('离开编辑页面？未保存的改动会丢失。'))back();}),
       button('保存草稿',async()=>{
-        const payload={title:draft.title,description:draft.description,anonymousEnabled:draft.anonymousEnabled,allowMultipleSubmissions:draft.allowMultipleSubmissions,closesAt:draft.closesAt,
-          questions:draft.questions.map((q,i)=>({...q,order:i}))};
-        const saved=draft.id?await api('/surveys/'+draft.id,'PUT',{...payload,revision:draft.revision}):await api('/surveys','POST',payload);
-        Object.assign(draft,saved);notice('草稿已保存');render();
+        await persist();notice('草稿已保存');render();
       },'primary')));
   }
   function questionEditor(q,index) {
@@ -59,6 +71,12 @@ export async function editor(survey, back) {
     if(q.type==='MULTI')body.append(el('small',{},'恰好选择N项：将最少和最多都设为N。非必答题留空可跳过。'));
     if(q.type==='TEXT')body.append(el('small',{},'长度按去除首尾空白后的Unicode码点计算。'));
     if(q.type==='NUMBER')body.append(check('只允许整数',q.constraints.integerOnly||false,v=>q.constraints.integerOnly=v));
+    if(q.sourceRef){
+      const content=el('fieldset',{disabled:true,class:'snapshot-body'});
+      for(const child of [...body.children].slice(1))content.append(child);
+      body.append(content,el('p',{class:'muted'},'库题固定快照 · 版本 '+q.sourceRef.questionVersionId.slice(-8)+'；正文只读，顺序和本卷规则可调整。'),
+        button('选择其他版本替换',()=>choose(q.questionId)));
+    }
     if(q.type!=='TEXT'){
       body.append(el('h3',{},'条件跳转'),el('p',{class:'muted'},'优先级数字越小越先匹配；第一条命中即生效。未命中进入下一题。'));
       q.rules.forEach((rule,rindex)=>body.append(ruleEditor(q,rule,rindex,index)));
